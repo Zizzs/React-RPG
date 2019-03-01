@@ -14,6 +14,7 @@ class Home extends Component {
             <li>Created Home, CreateCharacter, HUB, and Navbar Components</li>
             <li>Created Main Panel, Wrapper, and Zone Components</li>
             <li>Added Create a Character functionality and Main Panel stats</li>
+            <li>Added intro story in the HUB. Character must progress through the story before the Zones and Pylons are able to be accessed</li>
           </ul>
         </div>
       </div>

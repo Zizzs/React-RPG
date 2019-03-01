@@ -5,6 +5,9 @@ export default (state = INITIAL_STATE, action) => {
       const { name } = action;
       newState = Object.assign({}, state, {
         createdCharacter: true,
+        pylonAlpha: false,
+        pylonBeta: false,
+        pylonGamma: false,
         character: {
           name: name,
           enlightenment: 1,
@@ -28,6 +31,9 @@ export default (state = INITIAL_STATE, action) => {
 const INITIAL_STATE = {
     introText: 0,
     createdCharacter: false,
+    pylonAlpha: false,
+    pylonBeta: false,
+    pylonGamma: false,
     character: {
         name: null,
         enlightenment: 1,

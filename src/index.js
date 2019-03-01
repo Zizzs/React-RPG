@@ -8,7 +8,10 @@ import { createStore } from 'redux';
 import characterReducer from './reducers/character-reducer';
 import { Provider } from 'react-redux';
 
-const store = createStore(characterReducer);
+const store = createStore(
+    characterReducer, /* preloadedState, */
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 ReactDOM.render(
     <Provider store={store}>

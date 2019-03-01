@@ -24,7 +24,7 @@ function HUB(props) {
     return (
       <div>
           <div>
-            <p><NavLink className="hubLinks" to="/main/Zone">To Zone</NavLink></p>
+            {props.state.introText > 5 && <p><NavLink className="hubLinks" to="/main/Zone">To Zone</NavLink></p>}
           </div>
           <div>
             <div>
@@ -61,12 +61,15 @@ function HUB(props) {
             <div id="pylonDiv">
                 <div>
                     <p>Pylon Alpha</p>
+                    {!props.state.pylonAlpha && <p className="pylonDescription">Dormant</p>}
                 </div>
                 <div>
                     <p>Pylon Beta</p>
+                    {!props.state.pylonBeta && <p className="pylonDescription">Dormant</p>}
                 </div>
                 <div>
                     <p>Pylon Gamma</p>
+                    {!props.state.pylonGamma && <p className="pylonDescription">Dormant</p>}
                 </div>
             </div>}
             {props.state.introText <=5 && 

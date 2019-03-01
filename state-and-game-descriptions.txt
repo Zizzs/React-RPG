@@ -5,8 +5,8 @@ I need state for conditional UI rendering, and state for the character
 UI State:
 
 createdCharacter: false/true - Will determine if a character is created or not, and will change the "Create a Character" link to "Enter the Hub"
-introText: 0-10? - Will allow the user to click a button to progress the intro text
-zoneLevel: Possibly create a state to determine the highest level zone a character has completed?
+introText: 0-5 - Will allow the user to click a button to progress the intro text, after it hits 5, the player should be able to view the zones and pylons.
+pylonAmount: Possibly create a state to determine the highest level zone a character has completed?
 
 Character State:
 
