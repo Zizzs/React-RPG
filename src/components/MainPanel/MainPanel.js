@@ -19,16 +19,13 @@ function MainPanel(props) {
                 <p>Character: {props.state.character.name}</p>
             </div>
             <div>
-                <p>Level: {props.state.character.level}</p>
+                <p>Enlightenment Level: {props.state.character.enlightenment}</p>
             </div>
             <div>
-                <p>Strength: {props.state.character.strength}</p>
+                <p>Spark: {props.state.character.spark}</p>
             </div>
             <div>
-                <p>Agility: {props.state.character.agility}</p>
-            </div>
-            <div>
-                <p>Intellect: {props.state.character.intellect}</p>
+                <p>Luminosity: {props.state.character.luminosity}</p>
             </div>
         </div>
         <div>

@@ -1,0 +1,16 @@
+The state for this game will most likely become very complex.
+
+I need state for conditional UI rendering, and state for the character
+
+createdCharacter: false/true - Will determine if a character is created or not, and will change the "Create a Character" link to "Enter the Hub"
+
+Character State:
+
+
+character: {
+        name: name, - Self Explanitory, the character's name
+        enlightenment: 1, - Traditional Character Level called Enlightenment
+        spark: 1, - Similar to Strength, used for Battling
+        luminosity: 1, - A unique stat that will be used to determine if a character can explore a zone/ruin freely or not
+        items: [] - The character's items
+    }

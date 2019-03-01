@@ -6,10 +6,9 @@ export default (state = INITIAL_STATE, action) => {
         createdCharacter: true,
         character: {
           name: name,
-          level: 1,
-          strength: 1,
-          agility: 1,
-          intellect: 1,
+          enlightenment: 1,
+          spark: 1,
+          luminosity: 1,
           items: []
         }
       });
@@ -23,10 +22,9 @@ const INITIAL_STATE = {
     createdCharacter: false,
     character: {
         name: null,
-        level: 1,
-        strength: 1,
-        agility: 1,
-        intellect: 1,
+        enlightenment: 1,
+        spark: 1,
+        luminosity: 1,
         items: []
     }
 }

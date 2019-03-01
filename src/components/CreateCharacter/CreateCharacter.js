@@ -30,6 +30,7 @@ function CreateCharacter(props) {
                 ref={(input) => {_name = input;}}/>
             <button type='submit'>Create Character</button>
         </form>
+        <p>After Creation, Enter the HUB</p>
       </div>
     );
 }
