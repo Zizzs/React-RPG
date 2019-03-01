@@ -11,3 +11,23 @@
 .hubLinks:hover {
     color: black;
 }
+
+.introText {
+    color: white;
+    text-align: center;
+}
+
+#pylonDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    color: white;
+    text-align: center;
+}
+
+#imageDiv {
+    width: 400px;
+    height: 200px;
+    border: 1px solid gold;
+    margin-left: auto;
+    margin-right: auto;
+}

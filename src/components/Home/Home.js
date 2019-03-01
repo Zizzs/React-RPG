@@ -12,6 +12,8 @@ class Home extends Component {
             <li>Created new Navbar</li>
             <li>Set up Routing</li>
             <li>Created Home, CreateCharacter, HUB, and Navbar Components</li>
+            <li>Created Main Panel, Wrapper, and Zone Components</li>
+            <li>Added Create a Character functionality and Main Panel stats</li>
           </ul>
         </div>
       </div>

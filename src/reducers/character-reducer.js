@@ -1,8 +1,9 @@
 export default (state = INITIAL_STATE, action) => {
+    let newState;
     switch (action.type) {
     case 'CREATE_CHARACTER':
       const { name } = action;
-      let newState = Object.assign({}, state, {
+      newState = Object.assign({}, state, {
         createdCharacter: true,
         character: {
           name: name,
@@ -13,12 +14,19 @@ export default (state = INITIAL_STATE, action) => {
         }
       });
       return newState;
+    case 'PROGRESS_INTRO':
+      let introText = state.introText + 1;
+      newState = Object.assign({}, state, {
+        introText: introText,
+      });
+      return newState;
     default:
       return state;
     }
   };
 
 const INITIAL_STATE = {
+    introText: 0,
     createdCharacter: false,
     character: {
         name: null,

@@ -1,6 +1,6 @@
 #mainPanel {
     border: 3px solid white;
-    height: 200px;
+    height: 100px;
     display: grid;
     grid-template-rows: 1fr 2fr 1fr;
 }
