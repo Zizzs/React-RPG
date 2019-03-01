@@ -12,9 +12,6 @@ _Full description TBD_
 
 * _Setup TBD_
 
-
-_TBD_
-
 ## Known Bugs
 
 _Known Bugs TBD_

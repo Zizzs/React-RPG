@@ -5,8 +5,13 @@ I need state for conditional UI rendering, and state for the character
 UI State:
 
 createdCharacter: false/true - Will determine if a character is created or not, and will change the "Create a Character" link to "Enter the Hub"
+
 introText: 0-5 - Will allow the user to click a button to progress the intro text, after it hits 5, the player should be able to view the zones and pylons.
-pylonAmount: Possibly create a state to determine the highest level zone a character has completed?
+
+The three Pylon states will allow the HUB to show the information of if a character has activated a pylon or not. Each pylon will require a specific relic from a zone to activate.
+pylonAlpha: false
+pylonBeta: false
+pylonGamma: false
 
 Character State:
 
@@ -18,3 +23,8 @@ character: {
         luminosity: 1, - A unique stat that will be used to determine if a character can explore a zone/ruin freely or not
         items: [] - The character's items
     }
+
+
+Game Mechanics - 
+
+Primarily revolving around exploring areas within the Zones. Most likely just a single Explore action while in the zone. This will be RNG based where you might get an event, or a combat might start. 
