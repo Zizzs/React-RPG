@@ -1,0 +1,14 @@
+#mainDiv {
+    border-bottom: 3px solid white;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    color: white;
+}
+
+.mainLinks {
+    color: white;
+}
+
+.mainLinks:hover {
+    color: black;
+}
