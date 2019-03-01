@@ -14,9 +14,31 @@ function MainPanel(props) {
     console.log(props.state);
     return (
       <div id="mainPanel">
-        <p>This is the Main Panel</p>
-        <p>Character: {props.state.character.name}</p>
-        <p><NavLink to="/main/HUB">Back to HUB</NavLink></p>
+        <div id="statsPanel">
+            <div>
+                <p>Character: {props.state.character.name}</p>
+            </div>
+            <div>
+                <p>Level: {props.state.character.level}</p>
+            </div>
+            <div>
+                <p>Strength: {props.state.character.strength}</p>
+            </div>
+            <div>
+                <p>Agility: {props.state.character.agility}</p>
+            </div>
+            <div>
+                <p>Intellect: {props.state.character.intellect}</p>
+            </div>
+        </div>
+        <div>
+
+        </div>
+        <div>
+            <div>
+                <p><NavLink className="panelLinks" to="/main/HUB">Back to HUB</NavLink></p>
+            </div>
+        </div>
       </div>
     );
 }

@@ -3,3 +3,11 @@
     color: white;
     font-size: 30px;
 }
+
+.hubLinks {
+    color: white;
+}
+
+.hubLinks:hover {
+    color: black;
+}

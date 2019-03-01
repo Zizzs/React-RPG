@@ -5,6 +5,11 @@ export default (state = INITIAL_STATE, action) => {
       let newState = Object.assign({}, state, {
         character: {
           name: name,
+          level: 1,
+          strength: 1,
+          agility: 1,
+          intellect: 1,
+          items: []
         }
       });
       return newState;

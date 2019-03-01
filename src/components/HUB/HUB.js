@@ -8,7 +8,7 @@ class HUB extends Component {
     return (
       <div>
         <p id="mainHubHeader">The HUB</p>
-        <p><NavLink to="/main/Zone">To Zone</NavLink></p>
+        <p><NavLink className="hubLinks" to="/main/Zone">To Zone</NavLink></p>
       </div>
     );
   }

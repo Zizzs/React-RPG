@@ -3,3 +3,11 @@
     color: white;
     font-size: 30px;
 }
+
+.characterCreationLinks {
+    color: white;
+}
+
+.characterCreationLinks:hover {
+    color: black;
+}

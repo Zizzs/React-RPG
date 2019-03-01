@@ -1,4 +1,21 @@
 #mainPanel {
     border: 3px solid white;
     height: 200px;
+    display: grid;
+    grid-template-rows: 1fr 2fr 1fr;
+}
+
+#statsPanel {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    text-align: center;
+    color: white;
+}
+
+.panelLinks {
+    color: white;
+}
+
+.panelLinks:hover {
+    color: black;
 }
