@@ -36,7 +36,7 @@ function MainPanel(props) {
         </div>
         <div>
             <div>
-                <p><NavLink className="panelLinks" to="/main/HUB">Back to HUB</NavLink></p>
+                
             </div>
         </div>
       </div>

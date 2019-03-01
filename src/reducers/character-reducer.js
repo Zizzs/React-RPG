@@ -3,6 +3,7 @@ export default (state = INITIAL_STATE, action) => {
     case 'CREATE_CHARACTER':
       const { name } = action;
       let newState = Object.assign({}, state, {
+        createdCharacter: true,
         character: {
           name: name,
           level: 1,
@@ -19,6 +20,7 @@ export default (state = INITIAL_STATE, action) => {
   };
 
 const INITIAL_STATE = {
+    createdCharacter: false,
     character: {
         name: null,
         level: 1,

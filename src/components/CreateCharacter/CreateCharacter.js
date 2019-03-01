@@ -30,7 +30,6 @@ function CreateCharacter(props) {
                 ref={(input) => {_name = input;}}/>
             <button type='submit'>Create Character</button>
         </form>
-        <NavLink className="characterCreationLinks" to="/main/HUB">Enter the HUB</NavLink>
       </div>
     );
 }
