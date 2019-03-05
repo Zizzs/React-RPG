@@ -24,7 +24,7 @@ function HUB(props) {
     return (
       <div>
           <div>
-            {props.state.introText > 5 && <p><NavLink className="hubLinks" to="/main/Zone">To Zone</NavLink></p>}
+            {props.state.introText > 5 && <p><NavLink className="hubLinks" to="/main/ZoneOne">Shimmering Wasteland</NavLink></p>}
           </div>
           <div>
             <div>

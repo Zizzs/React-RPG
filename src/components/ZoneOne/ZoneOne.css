@@ -1,0 +1,22 @@
+#zoneOneDiv {
+    color: white;
+}
+
+#zoneOneHeader {
+    text-align: center;
+    font-size: 30px;
+}
+
+#zoneOneExplore {
+    text-align: center;
+    text-decoration: underline;
+}
+
+#zoneOneExplore:hover {
+    color: black;
+}
+
+#zoneOneDescription {
+    text-align: center;
+    font-size: 12px;
+}
