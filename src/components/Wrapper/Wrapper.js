@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from "react-router-dom";
+import { connect } from 'react-redux';
+import * as actions from '../../actions/actionCreator';
 
 import HUB from '../HUB/HUB';
 import ZoneOne from '../ZoneOne/ZoneOne';
@@ -10,6 +12,11 @@ import ZoneOneEvent from '../ZoneOneEvent/ZoneOneEvent';
 import './Wrapper.css';
 
 class Wrapper extends Component {
+
+  componentWillMount() {
+    this.props.fetchUser();
+  }
+
   render() {
     return (
       <div>
@@ -25,4 +32,10 @@ class Wrapper extends Component {
   }
 }
 
-export default Wrapper;
+const mapStateToProps = ({ character, auth }) => {
+  return {
+      character,
+      auth
+  }
+}
+export default connect(mapStateToProps, actions)(Wrapper);
