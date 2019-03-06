@@ -9,6 +9,9 @@ class AuthButton extends Component {
         <div >
             <button onClick={this.props.signIn}>Log In</button>
             <button onClick={this.props.signOut}>Log Out</button>
+            <div>
+                <p>{this.props.auth.email}</p>
+            </div>
         </div>
         );
     }

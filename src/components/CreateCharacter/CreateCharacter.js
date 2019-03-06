@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/actionCreator';
 import './CreateCharacter.css';
+import { NavLink } from "react-router-dom" 
 
 class CreateCharacter extends Component {
     
     componentWillMount() {
         this.props.fetchUser();
+        console.log(this.props);
     }
     
     handleCharacterCreation = event => {
         event.preventDefault();
         const character = {
+            introText: 0,
             createdCharacter: true,
             pylonAlpha: false,
             pylonBeta: false,
@@ -39,7 +42,7 @@ class CreateCharacter extends Component {
                     />
                 <button type='submit'>Create Character</button>
             </form>
-            <p>After Creation, Enter the HUB</p>
+            <p><NavLink to="/main/hub">Enter the HUB</NavLink></p>
         </div>
         );
     }

@@ -14,10 +14,14 @@ import './Wrapper.css';
 class Wrapper extends Component {
 
   componentWillMount() {
-    this.props.fetchUser();
+    //console.log(this.props.auth);
+    //console.log(this.props.auth.uid);
+    this.props.fetchCharacter(this.props.auth.uid);
   }
 
   render() {
+    let character = Object.values(this.props.character);
+    console.log(character[0]);
     return (
       <div>
         <MainPanel />

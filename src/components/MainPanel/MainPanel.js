@@ -11,7 +11,7 @@ const mapStateToProps = state => {
 };
 
 function MainPanel(props) {
-    console.log(props.state);
+    //console.log(props.state);
     return (
       <div id="mainPanel">
         <div id="statsPanel">
