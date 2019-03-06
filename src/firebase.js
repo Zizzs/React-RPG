@@ -1,4 +1,4 @@
-import firebaseConfig from './firebaseKeys';
+import firebaseConfig from '../firebaseKeys';
 import firebase from 'firebase';
 
 firebase.initializeApp(firebaseConfig);
