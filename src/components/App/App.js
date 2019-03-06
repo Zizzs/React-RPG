@@ -10,7 +10,9 @@ import Wrapper from '../Wrapper/Wrapper';
 
 import './App.css';
 
-function App(props) {
+class App extends Component {
+  
+  render() {
     return (
       <BrowserRouter>
         <div>
@@ -23,6 +25,7 @@ function App(props) {
         </div>
       </BrowserRouter>
     );
+    }
 }
 
 export default connect()(App);

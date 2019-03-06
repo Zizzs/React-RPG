@@ -1,4 +1,4 @@
-export default (state = "loading", action) => {
+export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case "FETCH_CHARACTER":
             return action.payload;
@@ -27,3 +27,15 @@ export default (state = "loading", action) => {
             return state;
     }
 };
+
+const INITIAL_STATE = {
+    createdCharacter: false,
+    enlightenment: 1,
+    introText: 0,
+    luminosity: 1,
+    name: "Random Jimbo Error Man",
+    pylonAlpha: false,
+    pylonBeta: false,
+    pylonGamma: false,
+    spark: 1,
+}

@@ -15,8 +15,9 @@ class Wrapper extends Component {
 
   componentWillMount() {
     let promise = new Promise((resolve, reject) => {
+      console.log("Attempting User Retrieval");
       this.props.fetchUser();
-      console.log("Finished User Fetching");
+      console.log("Finished User Retrieval");
       setTimeout(() => {
         resolve();
       }, 500)
@@ -24,6 +25,7 @@ class Wrapper extends Component {
     promise.then(() => {
       console.log("Attempting Character Retrieval");
       this.props.fetchCharacter(this.props.auth.uid);
+      console.log("Finished Character Retrieval");
     });
   }
 

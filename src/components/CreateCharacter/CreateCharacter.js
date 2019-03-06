@@ -53,4 +53,5 @@ const mapStateToProps = ({ character, auth }) => {
         auth
     }
 }
+
 export default connect(mapStateToProps, actions)(CreateCharacter);
