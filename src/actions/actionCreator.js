@@ -53,3 +53,7 @@ export const fetchCharacter = uid => async dispatch => {
     });
   });
 };
+
+export const saveCharacter = () => dispatch => {
+  
+}

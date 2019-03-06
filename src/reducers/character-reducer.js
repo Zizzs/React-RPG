@@ -1,22 +1,6 @@
-// export default (state = INITIAL_STATE, action) => {
+// export default (state = {}, action) => {
 //     let newState;
 //     switch (action.type) {
-//     case 'CREATE_CHARACTER':
-//       const { name } = action;
-//       newState = Object.assign({}, state, {
-//         createdCharacter: true,
-//         pylonAlpha: false,
-//         pylonBeta: false,
-//         pylonGamma: false,
-//         character: {
-//           name: name,
-//           enlightenment: 1,
-//           spark: 1,
-//           luminosity: 1,
-//           items: []
-//         }
-//       });
-//       return newState;
 //     case 'PROGRESS_INTRO':
 //       let introText = state.introText + 1;
 //       newState = Object.assign({}, state, {
