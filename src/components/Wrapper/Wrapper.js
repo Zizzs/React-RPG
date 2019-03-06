@@ -8,20 +8,26 @@ import ZoneOne from '../ZoneOne/ZoneOne';
 import MainPanel from '../MainPanel/MainPanel';
 import ZoneOneCombat from '../ZoneOneCombat/ZoneOneCombat';
 import ZoneOneEvent from '../ZoneOneEvent/ZoneOneEvent';
-
+import { createStore } from 'redux'; 
 import './Wrapper.css';
 
 class Wrapper extends Component {
 
   componentWillMount() {
-    //console.log(this.props.auth);
-    //console.log(this.props.auth.uid);
-    this.props.fetchCharacter(this.props.auth.uid);
+    let promise = new Promise((resolve, reject) => {
+      this.props.fetchUser();
+      console.log("Finished User Fetching");
+      setTimeout(() => {
+        resolve();
+      }, 500)
+    });
+    promise.then(() => {
+      console.log("Attempting Character Retrieval");
+      this.props.fetchCharacter(this.props.auth.uid);
+    });
   }
 
   render() {
-    let character = Object.values(this.props.character);
-    console.log(character[0]);
     return (
       <div>
         <MainPanel />
@@ -42,4 +48,5 @@ const mapStateToProps = ({ character, auth }) => {
       auth
   }
 }
+
 export default connect(mapStateToProps, actions)(Wrapper);

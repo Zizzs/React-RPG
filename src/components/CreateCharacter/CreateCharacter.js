@@ -19,13 +19,12 @@ class CreateCharacter extends Component {
             pylonAlpha: false,
             pylonBeta: false,
             pylonGamma: false,
-            character: {
-                name: event.target[0].value,
-                enlightenment: 1,
-                spark: 1,
-                luminosity: 1,
-                items: []
-            }
+            name: event.target[0].value,
+            enlightenment: 1,
+            spark: 1,
+            luminosity: 1,
+            items: []
+            
         }
         const { createCharacter, auth } = this.props;
         createCharacter(character, auth.uid);
