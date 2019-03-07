@@ -25,7 +25,7 @@ class Clock extends Component {
     }
 
     render() {
-        console.log(this.state.time.valueOf()/60000);
+        //console.log(this.state.time.valueOf()/60000);
         return (
         <div>
             {this.state.time.toLocaleTimeString()}

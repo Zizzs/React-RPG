@@ -29,6 +29,14 @@ export const createCharacter = (data, uid) => dispatch => {
         .set(data);
 };
 
+export const saveCharacter = (data, uid, charid) => dispatch => {
+  console.log('Saving');
+  userDataRef
+      .child(uid)
+      .child(charid)
+      .set(data);
+};
+
 export const fetchUser = () => dispatch => {
   authRef.onAuthStateChanged(user => {
     if (user) {
@@ -54,6 +62,3 @@ export const fetchCharacter = uid => async dispatch => {
   });
 };
 
-export const saveCharacter = () => dispatch => {
-  
-}
