@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from "react-router-dom" 
 import { connect } from 'react-redux';
 import AuthButton from '../AuthButton/AuthButton';
+import Clock from '../Clock/Clock';
 import * as actions from '../../actions/actionCreator';
 import './NavBar.css';
 
@@ -39,6 +40,9 @@ class NavBar extends Component {
         </div>
         <div>
           <AuthButton />
+        </div>
+        <div>
+          <Clock />
         </div>
       </div>
     );
