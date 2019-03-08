@@ -47,6 +47,7 @@ class Wrapper extends Component {
 }
 
 const mapStateToProps = ({ character, auth }) => {
+  character = Object.values(character)[0];
   return {
       character,
       auth

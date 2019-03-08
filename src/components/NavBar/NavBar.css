@@ -1,7 +1,7 @@
 #mainDiv {
     border-bottom: 3px solid gold;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 6fr 1fr;
     color: white;
 }
 
