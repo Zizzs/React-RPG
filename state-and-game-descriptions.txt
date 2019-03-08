@@ -28,3 +28,6 @@ character: {
 Game Mechanics - 
 
 Primarily revolving around exploring areas within the Zones. Most likely just a single Explore action while in the zone. This will be RNG based where you might get an event, or a combat might start. 
+
+Structure - 
+Structure a zone like this: ZoneOneComponent (press explore button) -> Randomizes 1-100 -> Random number picks Event or Battle or Whatever -> Load corresponding component (Hard coded information for each within the ZoneOneComponent)
