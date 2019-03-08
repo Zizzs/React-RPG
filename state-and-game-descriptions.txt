@@ -4,7 +4,10 @@ I need state for conditional UI rendering, and state for the character
 
 UI State:
 
-createdCharacter: false/true - Will determine if a character is created or not, and will change the "Create a Character" link to "Enter the Hub"
+NavBar/AuthButton State:
+    hasCreatedACharacter: Determines if a user has created a character or not. This comes from the user's character data (store and firebase), and is read when the page is reloaded and if the user has logged in).
+
+    hasLoggedIn:  Determines if the user has logged in. If they have not logged in, then the navbar does nothing and presents no links. The user must log in first, and if they have created a character then the HUB link shows up. And if they have not created a character, then the create a character link shows up.
 
 introText: 0-5 - Will allow the user to click a button to progress the intro text, after it hits 5, the player should be able to view the zones and pylons.
 
@@ -31,3 +34,5 @@ Primarily revolving around exploring areas within the Zones. Most likely just a 
 
 Structure - 
 Structure a zone like this: ZoneOneComponent (press explore button) -> Randomizes 1-100 -> Random number picks Event or Battle or Whatever -> Load corresponding component (Hard coded information for each within the ZoneOneComponent)
+
+Future Features: Save Button, Character Progression, Items?Rng?
