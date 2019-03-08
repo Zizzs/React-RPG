@@ -9,23 +9,20 @@ NavBar/AuthButton State:
 
     hasLoggedIn:  Determines if the user has logged in. If they have not logged in, then the navbar does nothing and presents no links. The user must log in first, and if they have created a character then the HUB link shows up. And if they have not created a character, then the create a character link shows up.
 
+Character State:
+
 introText: 0-5 - Will allow the user to click a button to progress the intro text, after it hits 5, the player should be able to view the zones and pylons.
 
 The three Pylon states will allow the HUB to show the information of if a character has activated a pylon or not. Each pylon will require a specific relic from a zone to activate.
 pylonAlpha: false
 pylonBeta: false
 pylonGamma: false
-
-Character State:
-
-
-character: {
-        name: name, - Self Explanitory, the character's name
-        enlightenment: 1, - Traditional Character Level called Enlightenment
-        spark: 1, - Similar to Strength, used for Battling
-        luminosity: 1, - A unique stat that will be used to determine if a character can explore a zone/ruin freely or not
-        items: [] - The character's items
-    }
+name: name, - Self Explanitory, the character's name
+enlightenment: 1, - Traditional Character Level called Enlightenment
+spark: 1, - Similar to Strength, used for Battling
+luminosity: 1, - A unique stat that will be used to determine if a character can explore a zone/ruin freely or not
+items: [] - The character's items
+    
 
 
 Game Mechanics - 
