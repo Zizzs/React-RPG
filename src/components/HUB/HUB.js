@@ -19,9 +19,11 @@ class HUB extends Component {
         this.calculatePrices = this.calculatePrices.bind(this);
         this.buySpark = this.buySpark.bind(this);
         this.buyLuminosity = this.buyLuminosity.bind(this);
+        this.buyEnergy = this.buyEnergy.bind(this);
     }
 
     bindFragments() {
+        this.calculatePrices();
         this.props.character.boundFragments += this.props.character.unboundFragments;
         this.props.character.unboundFragments = 0;
         let character = this.props.character;
@@ -30,6 +32,7 @@ class HUB extends Component {
     }
 
     restoreEnergy() {
+        this.calculatePrices();
         let energyDifference = this.props.character.maxEnergy - this.props.character.energy;
         if(this.props.character.boundFragments >= energyDifference) {
             this.props.character.boundFragments -= energyDifference;
@@ -41,7 +44,20 @@ class HUB extends Component {
         this.calculatePrices();
     }
 
+    buyEnergy() {
+        this.calculatePrices();
+        if(this.props.character.boundFragments >= this.state.energyPrice) {
+            this.props.character.boundFragments -= this.state.energyPrice;
+            this.props.character.maxEnergy += 25;
+            this.props.character.energy = this.props.character.maxEnergy;
+            let character = this.props.character;
+            const { saveCharacter, auth, characterId } = this.props;
+            saveCharacter(character, auth.uid, characterId);
+        }
+    }
+
     buySpark() {
+        this.calculatePrices();
         if(this.props.character.boundFragments >= this.state.sparkPrice) {
             this.props.character.boundFragments -= this.state.sparkPrice;
             this.props.character.spark += 1;
@@ -53,6 +69,7 @@ class HUB extends Component {
     }
 
     buyLuminosity() {
+        this.calculatePrices();
         if(this.props.character.boundFragments >= this.state.luminosityPrice) {
             this.props.character.boundFragments -= this.state.luminosityPrice;
             this.props.character.luminosity += 1;
@@ -165,7 +182,7 @@ class HUB extends Component {
                         <button onClick={this.buyLuminosity}>Increase Luminosity - {this.state.luminosityPrice} Fragments</button>
                     </div>
                     <div>
-                        <button>Increase Energy - {this.state.energyPrice} Fragments</button>
+                        <button onClick={this.buyEnergy}>Increase Energy - {this.state.energyPrice} Fragments</button>
                     </div>
                 </div>
                 }

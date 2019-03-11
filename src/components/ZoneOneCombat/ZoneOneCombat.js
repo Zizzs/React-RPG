@@ -14,14 +14,14 @@ class ZoneOneCombat extends Component {
                     energy: 5,
                     spark: 5,
                     luminosity: 1,
-                    fragments: 10,
+                    fragments: 50,
                 },
                 {
                     name: "Desperate Sick Bandit",
                     energy: 40,
                     spark: 15,
                     luminosity: 5,
-                    fragments: 50,
+                    fragments: 250,
                 }
             ],
             currentMonster: 0,
@@ -39,6 +39,7 @@ class ZoneOneCombat extends Component {
     }
 
     performCombat() {
+        console.log(`Enemy Energy: ${this.state.monsters[this.state.currentMonster].energy}`);
         if(this.state.monsters[this.state.currentMonster].energy > 0) {
             while(this.props.character.energy > 0 && this.state.monsters[this.state.currentMonster].energy > 0) {
                 //Character Attack
@@ -84,24 +85,26 @@ class ZoneOneCombat extends Component {
                     console.log(`Character Energy Left: ${this.props.character.energy}`);
                 }
             }
-        }
-        if (this.state.monsters[this.state.currentMonster].energy <= 0) {
-            //Rewards
-            let rewards = Math.floor(Math.random() * this.state.monsters[this.state.currentMonster].fragments);
-            console.log(`Recieved ${rewards} fragments.`);
-            this.props.character.unboundFragments += rewards;
-            let character = this.props.character;
-            const { saveCharacter, auth, characterId } = this.props;
-            console.log("Saving Combat");
-            saveCharacter(character, auth.uid, characterId);
-        }
-        if (this.props.character.energy <= 0) {
-            this.props.character.energy = 0;
-            this.props.character.unboundFragments = 0;
-            let character = this.props.character;
-            const { saveCharacter, auth, characterId } = this.props;
-            console.log("Saving Combat");
-            saveCharacter(character, auth.uid, characterId);
+        
+            if (this.state.monsters[this.state.currentMonster].energy <= 0) {
+                //Rewards
+                let fragments = this.state.monsters[this.state.currentMonster].fragments;
+                let rewards = Math.floor(Math.random() * (fragments - (fragments/2) + 1) + (fragments/2));
+                console.log(`Recieved ${rewards} fragments.`);
+                this.props.character.unboundFragments += rewards;
+                let character = this.props.character;
+                const { saveCharacter, auth, characterId } = this.props;
+                console.log("Saving Combat");
+                saveCharacter(character, auth.uid, characterId);
+            }
+            if (this.props.character.energy <= 0) {
+                this.props.character.energy = 0;
+                this.props.character.unboundFragments = 0;
+                let character = this.props.character;
+                const { saveCharacter, auth, characterId } = this.props;
+                console.log("Saving Combat");
+                saveCharacter(character, auth.uid, characterId);
+            }
         }
     }
 
