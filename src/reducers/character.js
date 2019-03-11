@@ -20,6 +20,7 @@ export default (state = INITIAL_STATE, action) => {
                   pylonGamma: state[characterKey].pylonGamma,
                   spark: state[characterKey].spark,
                   energy: state[characterKey].energy,
+                  maxEnergy: state[characterKey].maxEnergy,
                   boundFragments: state[characterKey].boundFragments,
                   unboundFragments: state[characterKey].unboundFragments
               }
@@ -35,13 +36,14 @@ const INITIAL_STATE = {
     createdCharacter: false,
     enlightenment: 1,
     introText: 0,
-    luminosity: 1,
+    luminosity: 5,
     name: "Random Jimbo Error Man",
     pylonAlpha: false,
     pylonBeta: false,
     pylonGamma: false,
-    spark: 1,
+    spark: 5,
     energy: 50,
+    maxEnergy: 50,
     boundFragments: 0,
     unboundFragments: 0,
 }

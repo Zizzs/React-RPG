@@ -1,20 +1,101 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom" 
 import { connect } from 'react-redux';
-
+import * as actions from '../../actions/actionCreator';
 import './HUB.css';
 
 
 class HUB extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            sparkPrice: 100,
+            luminosityPrice: 100,
+            energyPrice: 100,
+        }
         this.handleText = this.handleText.bind(this);
+        this.bindFragments = this.bindFragments.bind(this);
+        this.restoreEnergy = this.restoreEnergy.bind(this);
+        this.calculatePrices = this.calculatePrices.bind(this);
+        this.buySpark = this.buySpark.bind(this);
+        this.buyLuminosity = this.buyLuminosity.bind(this);
+        this.buyEnergy = this.buyEnergy.bind(this);
     }
+
+    bindFragments() {
+        this.calculatePrices();
+        this.props.character.boundFragments += this.props.character.unboundFragments;
+        this.props.character.unboundFragments = 0;
+        let character = this.props.character;
+        const { saveCharacter, auth, characterId } = this.props;
+        saveCharacter(character, auth.uid, characterId);
+    }
+
+    restoreEnergy() {
+        this.calculatePrices();
+        let energyDifference = this.props.character.maxEnergy - this.props.character.energy;
+        if(this.props.character.boundFragments >= energyDifference) {
+            this.props.character.boundFragments -= energyDifference;
+            this.props.character.energy = this.props.character.maxEnergy;
+        }
+        let character = this.props.character;
+        const { saveCharacter, auth, characterId } = this.props;
+        saveCharacter(character, auth.uid, characterId);
+        this.calculatePrices();
+    }
+
+    buyEnergy() {
+        this.calculatePrices();
+        if(this.props.character.boundFragments >= this.state.energyPrice) {
+            this.props.character.boundFragments -= this.state.energyPrice;
+            this.props.character.maxEnergy += 25;
+            this.props.character.energy = this.props.character.maxEnergy;
+            let character = this.props.character;
+            const { saveCharacter, auth, characterId } = this.props;
+            saveCharacter(character, auth.uid, characterId);
+            this.calculatePrices();
+        }
+    }
+
+    buySpark() {
+        this.calculatePrices();
+        if(this.props.character.boundFragments >= this.state.sparkPrice) {
+            this.props.character.boundFragments -= this.state.sparkPrice;
+            this.props.character.spark += 1;
+        }
+        let character = this.props.character;
+        const { saveCharacter, auth, characterId } = this.props;
+        saveCharacter(character, auth.uid, characterId);
+        this.calculatePrices();
+    }
+
+    buyLuminosity() {
+        this.calculatePrices();
+        if(this.props.character.boundFragments >= this.state.luminosityPrice) {
+            this.props.character.boundFragments -= this.state.luminosityPrice;
+            this.props.character.luminosity += 1;
+        }
+        let character = this.props.character;
+        const { saveCharacter, auth, characterId } = this.props;
+        saveCharacter(character, auth.uid, characterId);
+        this.calculatePrices();
+    }
+
+    calculatePrices() {
+        let currentSpark = this.props.character.spark;
+        let currentLuminosity = this.props.character.luminosity;
+        let currentEnergy = this.props.character.maxEnergy;
+        let sparkPrice = currentSpark * 20 + 100;
+        let luminosityPrice = currentLuminosity * 20 + 100;
+        let energyPrice = currentEnergy * 20 + 100;
+        console.log(sparkPrice, luminosityPrice, energyPrice);
+        this.setState({sparkPrice: sparkPrice, luminosityPrice: luminosityPrice, energyPrice: energyPrice});
+    }
+
     handleText(event) {
         const {dispatch} = this.props;
         event.preventDefault();
-        let characterKey = Object.keys(this.props.character);
+        //let characterKey = Object.keys(this.props.character);
         //let tempState = this.props.character[characterKey];
         const action = {
             type: 'PROGRESS_INTRO',
@@ -23,12 +104,23 @@ class HUB extends Component {
         dispatch(action);
     }
 
+    componentDidMount() {
+        setTimeout(() => {
+            this.calculatePrices();
+        }, 1000);
+    }
+
     render() {
-        console.log(this.props);
         return (
-        <div>
+        <div id="mainHubDiv">
+            <div id="zoneHeader">
+                <p>Enter a Portal:</p>
+            </div>
             <div>
-                {this.props.character.introText > 5 && <p><NavLink className="hubLinks" to="/main/ZoneOne">Shimmering Wasteland</NavLink></p>}
+                <div id="allZoneLinks">
+                    <p>{this.props.character.introText > 5 && <NavLink className="hubLinks" to="/main/ZoneOne">Shimmering Wasteland</NavLink>}</p>
+                    <p className="hubLinks">Another Zone</p>
+                </div>
             </div>
             <div>
                 <div>
@@ -76,6 +168,25 @@ class HUB extends Component {
                         {!this.props.character.pylonGamma && <p className="pylonDescription">Dormant</p>}
                     </div>
                 </div>}
+                {this.props.character.introText > 5 &&
+                <div id="hubInteractions">
+                    <div>
+                        <button onClick={this.restoreEnergy}>Restore Energy (1 Fragment/ 1 Energy)</button>
+                    </div>
+                    <div>
+                        <button onClick = {this.bindFragments}>Bind Unbound Fragments</button>
+                    </div>
+                    <div>
+                        <button onClick={this.buySpark}>Increase Spark - {this.state.sparkPrice} Fragments</button>
+                    </div>
+                    <div>
+                        <button onClick={this.buyLuminosity}>Increase Luminosity - {this.state.luminosityPrice} Fragments</button>
+                    </div>
+                    <div>
+                        <button onClick={this.buyEnergy}>Increase Energy - {this.state.energyPrice} Fragments</button>
+                    </div>
+                </div>
+                }
                 {this.props.character.introText <=5 && 
                 <div>
                     <form onSubmit={this.handleText}>
@@ -89,11 +200,13 @@ class HUB extends Component {
 }
 
 const mapStateToProps = ({ character, auth }) => {
+    let characterId = Object.keys(character)[0];
     character = Object.values(character)[0];
     return {
         character,
+        characterId,
         auth
     }
-  }
+}
 
-export default connect(mapStateToProps)(HUB);
+export default connect(mapStateToProps, actions)(HUB);

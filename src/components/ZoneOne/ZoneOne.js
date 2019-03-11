@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
-
+import { connect } from 'react-redux';
+import * as actions from '../../actions/actionCreator';
 import './ZoneOne.css';
 
 class ZoneOne extends React.Component {
@@ -14,20 +15,22 @@ class ZoneOne extends React.Component {
     };
 
     this.handleExploration = this.handleExploration.bind(this);
+    this.findLoot = this.findLoot.bind(this);
+    this.findEpicLoot = this.findEpicLoot.bind(this);
   }
   
 
 
   handleExploration() {
       let randomNumber = Math.floor(Math.random() * 100);
-      if(randomNumber <= 15) {
+      if(randomNumber <= 20) {
         this.setState({eventRedirect: true});
-      } else if(randomNumber > 15 && randomNumber <= 90) {
+      } else if(randomNumber > 20 && randomNumber <= 80) {
         this.setState({combatRedirect: true});
-      } else if(randomNumber > 90 && randomNumber <= 98) {
-        console.log(`Find Loot`);
+      } else if(randomNumber > 80 && randomNumber <= 98) {
+        this.findLoot();
       } else {
-        console.log(`Find Epic Loot`);
+        this.findEpicLoot();
       }
   }
 
@@ -41,6 +44,26 @@ class ZoneOne extends React.Component {
     if(this.state.eventRedirect) {
       return <Redirect to='/main/ZoneOneEvent' />
     }
+  }
+
+  findLoot() {
+    let loot = Math.floor(Math.random() * (100 - 25 + 1) + 25);
+    this.props.character.unboundFragments += loot;
+    let lootDiv = document.getElementById("eventOutput");
+    lootDiv.innerHTML = `Got ${loot} Fragments!`;
+    let character = this.props.character;
+    const { saveCharacter, auth, characterId } = this.props;
+    saveCharacter(character, auth.uid, characterId);
+  }
+
+  findEpicLoot() {
+    let loot = Math.floor(Math.random() * (1000 - 500 + 1) + 500);
+    this.props.character.unboundFragments += loot;
+    let lootDiv = document.getElementById("eventOutput");
+    lootDiv.innerHTML = `Got ${loot} Fragments! Nice!`;
+    let character = this.props.character;
+    const { saveCharacter, auth, characterId } = this.props;
+    saveCharacter(character, auth.uid, characterId);
   }
 
   render () {
@@ -58,10 +81,23 @@ class ZoneOne extends React.Component {
         <div>
           <p onClick={this.handleExploration} id="zoneOneExplore">Explore The Crystal Forest</p>
         </div>
+        <div id="eventOutput">
+
+        </div>
       </div>
     );
   }
 }
 
+const mapStateToProps = ({ character, auth }) => {
+  let characterId = Object.keys(character)[0];
+  character = Object.values(character)[0];
 
-export default ZoneOne;
+  return {
+      character,
+      characterId,
+      auth
+  }
+}
+
+export default connect(mapStateToProps, actions)(ZoneOne);
