@@ -8,10 +8,17 @@ import './HUB.css';
 class HUB extends Component {
     constructor(props) {
         super(props);
-
+        this.state = {
+            sparkPrice: 100,
+            luminosityPrice: 100,
+            energyPrice: 100,
+        }
         this.handleText = this.handleText.bind(this);
         this.bindFragments = this.bindFragments.bind(this);
         this.restoreEnergy = this.restoreEnergy.bind(this);
+        this.calculatePrices = this.calculatePrices.bind(this);
+        this.buySpark = this.buySpark.bind(this);
+        this.buyLuminosity = this.buyLuminosity.bind(this);
     }
 
     bindFragments() {
@@ -31,18 +38,58 @@ class HUB extends Component {
         let character = this.props.character;
         const { saveCharacter, auth, characterId } = this.props;
         saveCharacter(character, auth.uid, characterId);
+        this.calculatePrices();
+    }
+
+    buySpark() {
+        if(this.props.character.boundFragments >= this.state.sparkPrice) {
+            this.props.character.boundFragments -= this.state.sparkPrice;
+            this.props.character.spark += 1;
+        }
+        let character = this.props.character;
+        const { saveCharacter, auth, characterId } = this.props;
+        saveCharacter(character, auth.uid, characterId);
+        this.calculatePrices();
+    }
+
+    buyLuminosity() {
+        if(this.props.character.boundFragments >= this.state.luminosityPrice) {
+            this.props.character.boundFragments -= this.state.luminosityPrice;
+            this.props.character.luminosity += 1;
+        }
+        let character = this.props.character;
+        const { saveCharacter, auth, characterId } = this.props;
+        saveCharacter(character, auth.uid, characterId);
+        this.calculatePrices();
+    }
+
+    calculatePrices() {
+        let currentSpark = this.props.character.spark;
+        let currentLuminosity = this.props.character.luminosity;
+        let currentEnergy = this.props.character.maxEnergy;
+        let sparkPrice = currentSpark * 20 + 100;
+        let luminosityPrice = currentLuminosity * 20 + 100;
+        let energyPrice = currentEnergy * 20 + 100;
+        console.log(sparkPrice, luminosityPrice, energyPrice);
+        this.setState({sparkPrice: sparkPrice, luminosityPrice: luminosityPrice, energyPrice: energyPrice});
     }
 
     handleText(event) {
         const {dispatch} = this.props;
         event.preventDefault();
-        let characterKey = Object.keys(this.props.character);
+        //let characterKey = Object.keys(this.props.character);
         //let tempState = this.props.character[characterKey];
         const action = {
             type: 'PROGRESS_INTRO',
             state: this.props.character
         }
         dispatch(action);
+    }
+
+    componentDidMount() {
+        setTimeout(() => {
+            this.calculatePrices();
+        }, 1000);
     }
 
     render() {
@@ -112,13 +159,13 @@ class HUB extends Component {
                         <button onClick = {this.bindFragments}>Bind Unbound Fragments</button>
                     </div>
                     <div>
-                        <button>Increase Spark</button>
+                        <button onClick={this.buySpark}>Increase Spark - {this.state.sparkPrice} Fragments</button>
                     </div>
                     <div>
-                        <button>Increase Luminosity</button>
+                        <button onClick={this.buyLuminosity}>Increase Luminosity - {this.state.luminosityPrice} Fragments</button>
                     </div>
                     <div>
-                        <button>Increase Energy</button>
+                        <button>Increase Energy - {this.state.energyPrice} Fragments</button>
                     </div>
                 </div>
                 }
