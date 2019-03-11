@@ -33,6 +33,9 @@ class TextLog extends Component {
         let theParent = document.getElementById('textLogDiv');
         theParent.appendChild(theKid);
         let character = this.props.character;
+        character.boundFragments += 5;
+        let bonusEnergy = Math.floor(character.energy / 10);
+        character.energy += bonusEnergy;
         const { saveCharacter, auth, characterId } = this.props;
         saveCharacter(character, auth.uid, characterId);
     }

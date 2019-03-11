@@ -12,7 +12,8 @@ class ZoneOneCombat extends Component {
                 {
                     name: "Crystalized Rat",
                     energy: 5,
-                    spark: 1,
+                    spark: 2,
+                    luminosity: 1,
                     fragments: 5
                 },
             ],
@@ -23,24 +24,42 @@ class ZoneOneCombat extends Component {
     }
 
     performCombat() {
-        while(this.props.character.energy > 0 && this.state.monsters[this.state.currentMonster].energy > 0) {
-            //Character Attack
-            let tempMonsters = this.state.monsters;
-            let monster = this.state.monsters[this.state.currentMonster];
-            let updatedEnemyHealth = this.state.monsters[this.state.currentMonster].energy - this.props.character.spark;
-            monster.energy = updatedEnemyHealth;
-            tempMonsters[this.state.currentMonster] = monster;
-            this.setState({monsters: tempMonsters});
-            console.log(this.state.monsters[this.state.currentMonster].energy);
-            // Monster Attack
-            this.props.character.energy -= this.state.monsters[this.state.currentMonster].spark;
-        }
-        if (this.state.monsters[this.state.currentMonster].energy <= 0) {
-            //Rewards
-            this.props.character.boundFragments += this.state.monsters[this.state.currentMonster].fragments;
-            let character = this.props.character;
-            const { saveCharacter, auth, characterId } = this.props;
-            saveCharacter(character, auth.uid, characterId);
+        if(this.state.monsters[this.state.currentMonster].energy > 0) {
+            while(this.props.character.energy > 0 && this.state.monsters[this.state.currentMonster].energy > 0) {
+                //Character Attack
+                let tempMonsters = this.state.monsters;
+                let monster = this.state.monsters[this.state.currentMonster];
+
+                //Character Damage
+                if (this.props.character.energy > 0) {
+                    console.log("Character Attacking");
+                    let characterDamage = Math.floor(Math.random() * this.props.character.spark);
+                    console.log(characterDamage);
+                    console.log(this.props.character.spark);
+                    let updatedEnemyHealth = this.state.monsters[this.state.currentMonster].energy - characterDamage;
+                    monster.energy = updatedEnemyHealth;
+                }
+
+                //Setting Monster State
+                tempMonsters[this.state.currentMonster] = monster;
+                this.setState({monsters: tempMonsters});
+                console.log(this.state.monsters[this.state.currentMonster].energy);
+
+                // Monster Attack
+                if (this.state.monsters[this.state.currentMonster].energy > 0) {
+                    console.log("Monster Attacking");
+                    let monsterDamage = Math.floor(Math.random() * this.state.monsters[this.state.currentMonster].spark);
+                    this.props.character.energy -= monsterDamage;
+                }
+            }
+            if (this.state.monsters[this.state.currentMonster].energy <= 0) {
+                //Rewards
+                console.log("Rewards Get");
+                this.props.character.unboundFragments += this.state.monsters[this.state.currentMonster].fragments;
+                let character = this.props.character;
+                const { saveCharacter, auth, characterId } = this.props;
+                saveCharacter(character, auth.uid, characterId);
+            }
         }
     }
 
