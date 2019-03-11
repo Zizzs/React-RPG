@@ -47,7 +47,7 @@ class HUB extends Component {
 
     render() {
         return (
-        <div>
+        <div id="mainHubDiv">
             <div id="zoneHeader">
                 <p>Enter a Portal:</p>
             </div>
@@ -106,10 +106,10 @@ class HUB extends Component {
                 {this.props.character.introText > 5 &&
                 <div id="hubInteractions">
                     <div>
-                        <button onClick={this.restoreEnergy}>Restore Energy</button>
+                        <button onClick={this.restoreEnergy}>Restore Energy (1 Fragment/ 1 Energy)</button>
                     </div>
                     <div>
-                        <button onClick = {this.bindFragments}>Bind Fragments</button>
+                        <button onClick = {this.bindFragments}>Bind Unbound Fragments</button>
                     </div>
                     <div>
                         <button>Increase Spark</button>
