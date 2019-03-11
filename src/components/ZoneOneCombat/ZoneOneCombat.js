@@ -32,7 +32,7 @@ class ZoneOneCombat extends Component {
     }
 
     determineMonsters() {
-        let monsterRange = this.props.character.enlightenment;
+        let monsterRange = this.state.monsters.length;
         let currentTempMonster = Math.floor(Math.random() * monsterRange);
         console.log(currentTempMonster);
         this.setState({currentMonster: currentTempMonster});

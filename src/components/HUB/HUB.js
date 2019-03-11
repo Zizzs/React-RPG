@@ -53,6 +53,7 @@ class HUB extends Component {
             let character = this.props.character;
             const { saveCharacter, auth, characterId } = this.props;
             saveCharacter(character, auth.uid, characterId);
+            this.calculatePrices();
         }
     }
 
