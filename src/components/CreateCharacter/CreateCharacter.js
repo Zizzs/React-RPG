@@ -23,6 +23,9 @@ class CreateCharacter extends Component {
             enlightenment: 1,
             spark: 1,
             luminosity: 1,
+            energy: 50,
+            boundFragments: 0,
+            unboundFragments: 0,
             items: []
             
         }

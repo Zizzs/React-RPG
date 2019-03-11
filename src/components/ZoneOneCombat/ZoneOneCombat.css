@@ -1,0 +1,9 @@
+#combatText {
+    color: white;
+    text-align: center;
+}
+
+#fightOrBack {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}

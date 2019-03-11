@@ -33,3 +33,14 @@ Structure -
 Structure a zone like this: ZoneOneComponent (press explore button) -> Randomizes 1-100 -> Random number picks Event or Battle or Whatever -> Load corresponding component (Hard coded information for each within the ZoneOneComponent)
 
 Future Features: Save Button, Character Progression, Items?Rng?
+
+
+Combat:
+
+Bound Fragments - Exp you spend to level up stats.
+Unbound Fragments - Can lose them when you die. Need to Bind the fragments to the tree.
+
+Enlightenment: Main Power Level?
+Energy: Health?
+Spark: Attack Stat?
+Luminosity: Defense Stat?

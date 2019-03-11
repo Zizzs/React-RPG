@@ -48,13 +48,14 @@ class AuthButton extends Component {
                 resolve();
                 }, 500)
             });
-            if(this.props.character != false)
-            promise.then(() => {
-                console.log("Attempting Character Retrieval");
-                this.props.fetchCharacter(this.props.auth.uid);
-                console.log("Finished Character Retrieval");
-                this.setState({hasCreatedACharacter: true});
-            });
+            // //if(this.state.hasCreatedACharacter != false || this.props.character.createdCharacter != false) {
+            //     promise.then(() => {
+            //         console.log("Attempting Character Retrieval");
+            //         this.props.fetchCharacter(this.props.auth.uid);
+            //         console.log("Finished Character Retrieval");
+            //         this.setState({hasCreatedACharacter: true});
+            //     });
+            // //}
         }
     }
 
@@ -71,31 +72,32 @@ class AuthButton extends Component {
                 console.log("Finished User Retrieval");
                 setTimeout(() => {
                 resolve();
-                }, 500)
+                }, 1500)
             });
             promise.then(() => {
                 console.log("Attempting Character Retrieval");
                 this.props.fetchCharacter(this.props.auth.uid);
+                this.setState({hasCreatedACharacter: true});
                 console.log("Finished Character Retrieval");
             });
         } else {
-            setTimeout(() => this.checkLoggedIn(), 500);
+            setTimeout(() => this.checkLoggedIn(), 1500);
         }
     }
     render() {
         return (
         <div id="authButtonDiv">
             <div>
-                <p>{this.state.hasLoggedIn === true && this.props.character === false && <NavLink className="mainLinks" to="/createcharacter">Create a Character</NavLink>}</p>
+                <p>{this.state.hasLoggedIn === true && this.props.character.createdCharacter != true && <NavLink className="mainLinks" to="/createcharacter">Create a Character</NavLink>}</p>
             </div>
             <div>
-                <p>{this.state.hasLoggedIn === true && this.props.character != false && <NavLink className="mainLinks" to="/main/hub">Enter the HUB</NavLink>}</p>
+                <p>{this.state.hasLoggedIn === true && <NavLink className="mainLinks" to="/main/hub">Enter the HUB</NavLink>}</p>
             </div>
             <div>
-                <button onClick={this.signUserIn}>Log In</button>
+                {this.state.hasLoggedIn === false && <button onClick={this.signUserIn}>Log In</button>}
             </div>
             <div>
-                <button onClick={this.signUserOut}>Log Out</button>
+                {this.state.hasLoggedIn === true && <button onClick={this.signUserOut}>Log Out</button>}
             </div>
             <div>
                 <p>{this.props.auth && this.props.auth.email}</p>

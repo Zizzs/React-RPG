@@ -15,6 +15,9 @@ class MainPanel extends Component {
                     <p>Character: {this.props.character.name}</p>
                 </div>
                 <div>
+                    <p>Energy: {this.props.character.energy}</p>
+                </div>
+                <div>
                     <p>Enlightenment Level: {this.props.character.enlightenment}</p>
                 </div>
                 <div>
@@ -24,8 +27,13 @@ class MainPanel extends Component {
                     <p>Luminosity: {this.props.character.luminosity}</p>
                 </div>
             </div>
-            <div>
-
+            <div id="fragmentsPanel">
+                <div>
+                    <p>Bound Fragments: {this.props.character.boundFragments}</p>
+                </div>
+                <div>
+                    <p>Unbound Fragments: {this.props.character.unboundFragments}</p>
+                </div>
             </div>
             <div>
                 <div>

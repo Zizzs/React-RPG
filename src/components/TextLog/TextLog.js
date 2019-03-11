@@ -25,8 +25,8 @@ class TextLog extends Component {
     }
     
     autoSave() {
-        let newCount = this.state.count + 1;
-        this.setState({count: newCount})
+        //let newCount = this.state.count + 1;
+        //this.setState({count: newCount})
         let theKid = document.createElement("p");
         console.log(this.props);
         theKid.innerHTML = `You feel the tree pulse. (Save)`;

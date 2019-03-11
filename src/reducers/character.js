@@ -19,6 +19,9 @@ export default (state = INITIAL_STATE, action) => {
                   pylonBeta: state[characterKey].pylonBeta,
                   pylonGamma: state[characterKey].pylonGamma,
                   spark: state[characterKey].spark,
+                  energy: state[characterKey].energy,
+                  boundFragments: state[characterKey].boundFragments,
+                  unboundFragments: state[characterKey].unboundFragments
               }
             });
             console.log(newState);
@@ -38,4 +41,7 @@ const INITIAL_STATE = {
     pylonBeta: false,
     pylonGamma: false,
     spark: 1,
+    energy: 50,
+    boundFragments: 0,
+    unboundFragments: 0,
 }
