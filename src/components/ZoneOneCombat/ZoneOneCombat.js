@@ -12,9 +12,9 @@ class ZoneOneCombat extends Component {
                 {
                     name: "Crystalized Rat",
                     energy: 5,
-                    spark: 2,
+                    spark: 5,
                     luminosity: 1,
-                    fragments: 5
+                    fragments: 10
                 },
             ],
             currentMonster: 0,
@@ -49,13 +49,15 @@ class ZoneOneCombat extends Component {
                 if (this.state.monsters[this.state.currentMonster].energy > 0) {
                     console.log("Monster Attacking");
                     let monsterDamage = Math.floor(Math.random() * this.state.monsters[this.state.currentMonster].spark);
+                    console.log(monsterDamage);
                     this.props.character.energy -= monsterDamage;
                 }
             }
             if (this.state.monsters[this.state.currentMonster].energy <= 0) {
                 //Rewards
                 console.log("Rewards Get");
-                this.props.character.unboundFragments += this.state.monsters[this.state.currentMonster].fragments;
+                let rewards = Math.floor(Math.random() * this.state.monsters[this.state.currentMonster].fragments);
+                this.props.character.unboundFragments += rewards;
                 let character = this.props.character;
                 const { saveCharacter, auth, characterId } = this.props;
                 saveCharacter(character, auth.uid, characterId);

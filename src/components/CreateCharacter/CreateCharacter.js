@@ -26,6 +26,7 @@ class CreateCharacter extends Component {
             energy: 50,
             boundFragments: 0,
             unboundFragments: 0,
+            maxEnergy: 50,
             items: []
             
         }

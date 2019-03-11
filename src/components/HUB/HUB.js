@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { NavLink } from "react-router-dom" 
 import { connect } from 'react-redux';
-
+import * as actions from '../../actions/actionCreator';
 import './HUB.css';
 
 
@@ -10,7 +10,29 @@ class HUB extends Component {
         super(props);
 
         this.handleText = this.handleText.bind(this);
+        this.bindFragments = this.bindFragments.bind(this);
+        this.restoreEnergy = this.restoreEnergy.bind(this);
     }
+
+    bindFragments() {
+        this.props.character.boundFragments += this.props.character.unboundFragments;
+        this.props.character.unboundFragments = 0;
+        let character = this.props.character;
+        const { saveCharacter, auth, characterId } = this.props;
+        saveCharacter(character, auth.uid, characterId);
+    }
+
+    restoreEnergy() {
+        let energyDifference = this.props.character.maxEnergy - this.props.character.energy;
+        if(this.props.character.boundFragments >= energyDifference) {
+            this.props.character.boundFragments -= energyDifference;
+            this.props.character.energy = this.props.character.maxEnergy;
+        }
+        let character = this.props.character;
+        const { saveCharacter, auth, characterId } = this.props;
+        saveCharacter(character, auth.uid, characterId);
+    }
+
     handleText(event) {
         const {dispatch} = this.props;
         event.preventDefault();
@@ -24,11 +46,16 @@ class HUB extends Component {
     }
 
     render() {
-        console.log(this.props);
         return (
         <div>
+            <div id="zoneHeader">
+                <p>Enter a Portal:</p>
+            </div>
             <div>
-                {this.props.character.introText > 5 && <p><NavLink className="hubLinks" to="/main/ZoneOne">Shimmering Wasteland</NavLink></p>}
+                <div id="allZoneLinks">
+                    <p>{this.props.character.introText > 5 && <NavLink className="hubLinks" to="/main/ZoneOne">Shimmering Wasteland</NavLink>}</p>
+                    <p className="hubLinks">Another Zone</p>
+                </div>
             </div>
             <div>
                 <div>
@@ -76,6 +103,25 @@ class HUB extends Component {
                         {!this.props.character.pylonGamma && <p className="pylonDescription">Dormant</p>}
                     </div>
                 </div>}
+                {this.props.character.introText > 5 &&
+                <div id="hubInteractions">
+                    <div>
+                        <button onClick={this.restoreEnergy}>Restore Energy</button>
+                    </div>
+                    <div>
+                        <button onClick = {this.bindFragments}>Bind Fragments</button>
+                    </div>
+                    <div>
+                        <button>Increase Spark</button>
+                    </div>
+                    <div>
+                        <button>Increase Luminosity</button>
+                    </div>
+                    <div>
+                        <button>Increase Energy</button>
+                    </div>
+                </div>
+                }
                 {this.props.character.introText <=5 && 
                 <div>
                     <form onSubmit={this.handleText}>
@@ -89,11 +135,13 @@ class HUB extends Component {
 }
 
 const mapStateToProps = ({ character, auth }) => {
+    let characterId = Object.keys(character)[0];
     character = Object.values(character)[0];
     return {
         character,
+        characterId,
         auth
     }
-  }
+}
 
-export default connect(mapStateToProps)(HUB);
+export default connect(mapStateToProps, actions)(HUB);

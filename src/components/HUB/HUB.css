@@ -35,3 +35,21 @@
 .pylonDescription {
     font-size: 12px;
 }
+
+#zoneHeader {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+}
+
+#allZoneLinks {
+    text-align: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+#hubInteractions {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    text-align: center;
+}
