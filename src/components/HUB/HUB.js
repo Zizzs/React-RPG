@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { NavLink } from "react-router-dom" 
 import { connect } from 'react-redux';
 import * as actions from '../../actions/actionCreator';
+import createItem from '../../items/itemGeneration';
 import './HUB.css';
 
 
@@ -20,6 +21,7 @@ class HUB extends Component {
         this.buySpark = this.buySpark.bind(this);
         this.buyLuminosity = this.buyLuminosity.bind(this);
         this.buyEnergy = this.buyEnergy.bind(this);
+        this.generateItem = this.generateItem.bind(this);
     }
 
     bindFragments() {
@@ -55,6 +57,16 @@ class HUB extends Component {
             saveCharacter(character, auth.uid, characterId);
             this.calculatePrices();
         }
+    }
+
+    generateItem() {
+        let item = createItem(this.props.character.enlightenment);
+        let character = this.props.character;
+        if(character.items === false) {
+            character.items = []
+        }
+        character.items.push(item);
+        console.log(character);
     }
 
     buySpark() {
@@ -169,6 +181,10 @@ class HUB extends Component {
                     </div>
                 </div>}
                 {this.props.character.introText > 5 &&
+                <div id="interactionsHeader">
+                    <p>Heals/Upgrades:</p>
+                </div>}
+                {this.props.character.introText > 5 &&
                 <div id="hubInteractions">
                     <div>
                         <button onClick={this.restoreEnergy}>Restore Energy (1 Fragment/ 1 Energy)</button>
@@ -185,6 +201,19 @@ class HUB extends Component {
                     <div>
                         <button onClick={this.buyEnergy}>Increase Energy - {this.state.energyPrice} Fragments</button>
                     </div>
+                    {/* <div>
+                        <button onClick={this.generateItem}>Generate Item</button>
+                    </div> */}
+                </div>
+                }
+                {this.props.character.introText > 5 &&
+                <div id="itemsInteractions">
+                    <p>Inventory, Items, and Market:</p>
+                </div>
+                }
+                {this.props.character.introText > 5 &&
+                <div>
+                    <NavLink className="hubLinks" to="/main/Inventory"></NavLink>
                 </div>
                 }
                 {this.props.character.introText <=5 && 

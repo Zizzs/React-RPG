@@ -1,7 +1,7 @@
 #mainHubHeader {
     text-align: center;
     color: white;
-    font-size: 30px;
+    font-size: 40px;
 }
 
 .hubLinks {
@@ -50,10 +50,22 @@
 
 #hubInteractions {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     text-align: center;
 }
 
 #mainHubDiv {
     margin-bottom: 100px;
+}
+
+#interactionsHeader {
+    font-size: 25px;
+    color: white;
+    text-align: center;
+}
+
+#itemsInteractions {
+    font-size: 25px;
+    color: white;
+    text-align: center;
 }

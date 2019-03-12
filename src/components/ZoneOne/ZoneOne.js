@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/actionCreator';
+import createItem from '../../items/itemGeneration';
 import './ZoneOne.css';
 
 class ZoneOne extends React.Component {
@@ -17,6 +18,7 @@ class ZoneOne extends React.Component {
     this.handleExploration = this.handleExploration.bind(this);
     this.findLoot = this.findLoot.bind(this);
     this.findEpicLoot = this.findEpicLoot.bind(this);
+    this.generateItem = this.generateItem.bind(this);
   }
   
 
@@ -46,11 +48,41 @@ class ZoneOne extends React.Component {
     }
   }
 
+  generateItem(enlightenment) {
+    let item = createItem(enlightenment);
+    let character = this.props.character;
+    if(character.items === false) {
+        character.items = []
+    }
+    character.items.push(item);
+    console.log(character);
+}
+
   findLoot() {
-    let loot = Math.floor(Math.random() * (100 - 25 + 1) + 25);
-    this.props.character.unboundFragments += loot;
+    // Text Output
     let lootDiv = document.getElementById("eventOutput");
-    lootDiv.innerHTML = `Got ${loot} Fragments!`;
+    let itemLoot = 0;
+
+    //Generate Loot
+    let loot = Math.floor(Math.random() * (100 - 25 + 1) + 25);
+    let randomNumber = Math.floor(Math.random() * 100);
+    console.log(`You rolled a ${randomNumber} to find loot.`)
+    if(randomNumber >= 66) {
+      this.generateItem(this.props.character.enlightenment);
+      itemLoot = 1;
+    }
+
+    // Give Loot to Character
+    this.props.character.unboundFragments += loot;
+
+    // Loot Text
+    if(itemLoot === 0) {
+      lootDiv.innerHTML = `Got ${loot} Fragments!`;
+    } else if (itemLoot === 1) {
+      lootDiv.innerHTML = `Got ${loot} Fragments and an item!`;
+    }
+
+    // Saving Character
     let character = this.props.character;
     const { saveCharacter, auth, characterId } = this.props;
     saveCharacter(character, auth.uid, characterId);

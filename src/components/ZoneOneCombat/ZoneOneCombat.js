@@ -124,9 +124,9 @@ class ZoneOneCombat extends Component {
             //     console.log("Finished Character Retrieval");
             // });
             // setTimeout(() => {
-            let tempNum = Math.floor(Math.random() * this.props.character.enlightenment);
-            this.setState({currentMonster: tempNum});
-            console.log(tempNum);
+            // let tempNum = Math.floor(Math.random() * this.props.character.enlightenment);
+            // this.setState({currentMonster: tempNum});
+            // console.log(tempNum);
             // }, 500);
             //this.setState({hasCharacterInfo: true});
             this.determineMonsters();

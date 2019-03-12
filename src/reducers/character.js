@@ -22,7 +22,8 @@ export default (state = INITIAL_STATE, action) => {
                   energy: state[characterKey].energy,
                   maxEnergy: state[characterKey].maxEnergy,
                   boundFragments: state[characterKey].boundFragments,
-                  unboundFragments: state[characterKey].unboundFragments
+                  unboundFragments: state[characterKey].unboundFragments,
+                  items: state[characterKey].items
               }
             });
             console.log(newState);
@@ -46,4 +47,5 @@ const INITIAL_STATE = {
     maxEnergy: 50,
     boundFragments: 0,
     unboundFragments: 0,
+    items: false,
 }
