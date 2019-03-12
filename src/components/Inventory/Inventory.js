@@ -37,7 +37,7 @@ class Inventory extends Component {
             //Saving Character
             let character = this.props.character;
             const { saveCharacter, auth, characterId } = this.props;
-            console.log("Saving Combat");
+            console.log("Saving Character");
             saveCharacter(character, auth.uid, characterId);
         }
     }
