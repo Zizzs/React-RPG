@@ -27,7 +27,8 @@ class CreateCharacter extends Component {
             boundFragments: 0,
             unboundFragments: 0,
             maxEnergy: 50,
-            items: false
+            items: false,
+            equippedItem: {name: "", spark: 0, energy: 0, luminosity: 0}
             
         }
         const { createCharacter, auth } = this.props;

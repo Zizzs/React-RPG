@@ -9,6 +9,7 @@ import MainPanel from '../MainPanel/MainPanel';
 import ZoneOneCombat from '../ZoneOneCombat/ZoneOneCombat';
 import ZoneOneEvent from '../ZoneOneEvent/ZoneOneEvent';
 import TextLog from '../TextLog/TextLog';
+import Inventory from '../Inventory/Inventory';
 import { createStore } from 'redux'; 
 import './Wrapper.css';
 
@@ -39,6 +40,7 @@ class Wrapper extends Component {
             <Route path="/main/ZoneOne" component={ZoneOne}/>
             <Route path="/main/ZoneOneCombat" component={ZoneOneCombat}/>
             <Route path="/main/ZoneOneEvent" component={ZoneOneEvent}/>
+            <Route path="/main/Inventory" component={Inventory}/>
         </Switch>
         <TextLog />
       </div>

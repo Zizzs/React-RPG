@@ -213,7 +213,7 @@ class HUB extends Component {
                 }
                 {this.props.character.introText > 5 &&
                 <div>
-                    <NavLink className="hubLinks" to="/main/Inventory"></NavLink>
+                    <NavLink className="hubLinks" to="/main/Inventory">View Inventory</NavLink>
                 </div>
                 }
                 {this.props.character.introText <=5 && 

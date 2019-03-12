@@ -1,0 +1,33 @@
+#itemsList {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 25px;
+    margin-top: 25px;
+    margin-left: 25px;
+    margin-right: 25px;
+}
+
+.itemBox {
+    color: white;
+    text-align: center;
+    border: 1px solid gold;
+    padding: 10px;
+}
+
+#equippedItem {
+    color: white;
+    text-align: center;
+    border: 1px solid gold;
+    width: 240px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 25px;
+    padding: 10px;
+}
+
+.itemHeaders {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+    
+}

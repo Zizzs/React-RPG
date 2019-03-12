@@ -23,7 +23,9 @@ export default (state = INITIAL_STATE, action) => {
                   maxEnergy: state[characterKey].maxEnergy,
                   boundFragments: state[characterKey].boundFragments,
                   unboundFragments: state[characterKey].unboundFragments,
-                  items: state[characterKey].items
+                  items: state[characterKey].items,
+                  equippedItem: state[characterKey].equippedItem,
+                  hasEquippedItem: state[characterKey].hasEquippedItem
               }
             });
             console.log(newState);
@@ -48,4 +50,6 @@ const INITIAL_STATE = {
     boundFragments: 0,
     unboundFragments: 0,
     items: false,
+    equippedItem: {name: "", spark: 0, energy: 0, luminosity: 0},
+    hasEquippedItem: false,
 }
