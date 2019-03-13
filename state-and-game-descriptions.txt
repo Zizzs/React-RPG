@@ -44,3 +44,13 @@ Enlightenment: Main Power Level?
 Energy: Health?
 Spark: Attack Stat?
 Luminosity: Defense Stat?
+
+
+Wednesday 3/12 ToDo List:
+
+Move console.logs in the combat, into the event log on the page.
+Add monster tiers. A new monster stat that will determine it's loot drops and difficulty, monster level unlocks will be character's enlightenment +25%
+New loot tiers that will drop, possible 1-maxRoll, or maybe split into tiers. Not determined.
+Allow items to be fragmented into bound fragments (based off roll values?)
+Limit inventory to 10, add buffer item slot. Buffer item and all items after will be destroyed upon next loot. Keep fragmenting items to clear up inventory.
+Add Bank window, and allow items to be banked. Bank slots must be purchased for bound fragments. 500/5000/15000/50000/100000

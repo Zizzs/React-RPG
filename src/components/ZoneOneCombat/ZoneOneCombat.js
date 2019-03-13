@@ -41,50 +41,49 @@ class ZoneOneCombat extends Component {
     performCombat() {
         console.log(`Enemy Energy: ${this.state.monsters[this.state.currentMonster].energy}`);
         if(this.state.monsters[this.state.currentMonster].energy > 0) {
-            while(this.props.character.energy > 0 && this.state.monsters[this.state.currentMonster].energy > 0) {
-                //Character Attack
-                let tempMonsters = this.state.monsters;
-                let monster = this.state.monsters[this.state.currentMonster];
+            //Character Attack
+            let tempMonsters = this.state.monsters;
+            let monster = this.state.monsters[this.state.currentMonster];
 
-                //Character Damage
-                if (this.props.character.energy > 0) {
-                    console.log("Character Attacking");
-                    let characterDamage = Math.floor(Math.random() * this.props.character.spark);
-                    console.log(characterDamage);
-                    console.log(this.props.character.spark);
-                    let enemyDefense = Math.floor(Math.random() * this.state.monsters[this.state.currentMonster].luminosity);
-                    let updatedDamage = characterDamage - enemyDefense;
-                    if (updatedDamage < 0) {
-                        updatedDamage = 0;
-                    }
-                    console.log(`You attacked for ${characterDamage}, the monster defense was ${enemyDefense}, final damage was ${updatedDamage}`);
-                    let updatedEnemyHealth = this.state.monsters[this.state.currentMonster].energy - updatedDamage;
-                    monster.energy = updatedEnemyHealth;
+            //Character Damage
+            if (this.props.character.energy > 0) {
+                console.log("Character Attacking");
+                let characterDamage = Math.floor(Math.random() * this.props.character.spark);
+                console.log(characterDamage);
+                console.log(this.props.character.spark);
+                let enemyDefense = Math.floor(Math.random() * this.state.monsters[this.state.currentMonster].luminosity);
+                let updatedDamage = characterDamage - enemyDefense;
+                if (updatedDamage < 0) {
+                    updatedDamage = 0;
                 }
-
-                //Setting Monster State
-                tempMonsters[this.state.currentMonster] = monster;
-                this.setState({monsters: tempMonsters});
-                console.log(this.state.monsters[this.state.currentMonster].energy);
-
-                // Monster Attack
-                if (this.state.monsters[this.state.currentMonster].energy > 0) {
-                    console.log("Monster Attacking");
-                    let monsterDamage = Math.floor(Math.random() * this.state.monsters[this.state.currentMonster].spark);
-                    let characterDefense = Math.floor(Math.random() * this.props.character.luminosity);
-                    let updatedDamage = monsterDamage - characterDefense;
-                    if (updatedDamage < 0) {
-                        updatedDamage = 0;
-                    }
-                    console.log(`The ${this.state.monsters[this.state.currentMonster].name} attacked for ${monsterDamage}, your defense was ${characterDefense}, final damage was ${updatedDamage}`);
-                    console.log(`Character Health Left: ${this.props.character.energy}`);
-                    if (updatedDamage > this.props.character.energy) {
-                        this.props.character.energy = 0;
-                    }
-                    this.props.character.energy -= updatedDamage;
-                    console.log(`Character Energy Left: ${this.props.character.energy}`);
-                }
+                console.log(`You attacked for ${characterDamage}, the monster defense was ${enemyDefense}, final damage was ${updatedDamage}`);
+                let updatedEnemyHealth = this.state.monsters[this.state.currentMonster].energy - updatedDamage;
+                monster.energy = updatedEnemyHealth;
             }
+
+            //Setting Monster State
+            tempMonsters[this.state.currentMonster] = monster;
+            this.setState({monsters: tempMonsters});
+            console.log(this.state.monsters[this.state.currentMonster].energy);
+
+            // Monster Attack
+            if (this.state.monsters[this.state.currentMonster].energy > 0) {
+                console.log("Monster Attacking");
+                let monsterDamage = Math.floor(Math.random() * this.state.monsters[this.state.currentMonster].spark);
+                let characterDefense = Math.floor(Math.random() * this.props.character.luminosity);
+                let updatedDamage = monsterDamage - characterDefense;
+                if (updatedDamage < 0) {
+                    updatedDamage = 0;
+                }
+                console.log(`The ${this.state.monsters[this.state.currentMonster].name} attacked for ${monsterDamage}, your defense was ${characterDefense}, final damage was ${updatedDamage}`);
+                console.log(`Character Health Left: ${this.props.character.energy}`);
+                if (updatedDamage > this.props.character.energy) {
+                    this.props.character.energy = 0;
+                }
+                this.props.character.energy -= updatedDamage;
+                console.log(`Character Energy Left: ${this.props.character.energy}`);
+            }
+            
         
             if (this.state.monsters[this.state.currentMonster].energy <= 0) {
                 //Rewards
