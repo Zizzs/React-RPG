@@ -7,3 +7,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
 }
+
+#eventOutput {
+    color: white;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 25px;
+    border: 1px solid gold;
+    height: 225px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    overflow-y: auto;
+}
+

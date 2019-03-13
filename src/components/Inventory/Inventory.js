@@ -54,7 +54,7 @@ class Inventory extends Component {
 
     buyBankSlots() {
         //Calculate Bank Slot Cost
-        let bankCosts = [500, 5000, 25000, 50000, 100000];
+        let bankCosts = [500, 5000, 25000, 50000, 100000, 250000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000];
         let nextCost = bankCosts[this.props.character.bankSlots];
         //Add Bank Slot and Remove Fragments
         this.props.character.bankSlots += 1;
