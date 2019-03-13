@@ -17,11 +17,25 @@ class ZoneOneCombat extends Component {
                     fragments: 50,
                 },
                 {
-                    name: "Desperate Sick Bandit",
+                    name: "Glimmer Bandit",
                     energy: 40,
                     spark: 15,
                     luminosity: 5,
                     fragments: 250,
+                },
+                {
+                    name: "Lesser Diamond Elemental",
+                    energy: 100,
+                    spark: 20,
+                    luminosity: 35,
+                    fragments: 750,
+                },
+                {
+                    name: "Young Crystal Ent",
+                    energy: 250,
+                    spark: 50,
+                    luminosity: 75,
+                    fragments: 2000,
                 }
             ],
             currentMonster: 0,
@@ -76,12 +90,15 @@ class ZoneOneCombat extends Component {
                     updatedDamage = 0;
                 }
                 console.log(`The ${this.state.monsters[this.state.currentMonster].name} attacked for ${monsterDamage}, your defense was ${characterDefense}, final damage was ${updatedDamage}`);
-                console.log(`Character Health Left: ${this.props.character.energy}`);
                 if (updatedDamage > this.props.character.energy) {
                     this.props.character.energy = 0;
                 }
                 this.props.character.energy -= updatedDamage;
                 console.log(`Character Energy Left: ${this.props.character.energy}`);
+                let character = this.props.character;
+                const { saveCharacter, auth, characterId } = this.props;
+                console.log("Saving Combat");
+                saveCharacter(character, auth.uid, characterId);
             }
             
         
@@ -109,27 +126,27 @@ class ZoneOneCombat extends Component {
 
     componentWillMount() {
         // if (this.state.hasCharacterInfo === false) {
-            // let promise = new Promise((resolve, reject) => {
-            //     console.log("Attempting User Retrieval");
-            //     this.props.fetchUser();
-            //     console.log("Finished User Retrieval");
-            //     setTimeout(() => {
-            //     resolve();
-            //     }, 500)
-            // });
-            // promise.then(() => {
-            //     console.log("Attempting Character Retrieval");
-            //     this.props.fetchCharacter(this.props.auth.uid);
-            //     console.log("Finished Character Retrieval");
-            // });
-            // setTimeout(() => {
-            // let tempNum = Math.floor(Math.random() * this.props.character.enlightenment);
-            // this.setState({currentMonster: tempNum});
-            // console.log(tempNum);
-            // }, 500);
-            //this.setState({hasCharacterInfo: true});
-            this.determineMonsters();
-        // }
+        // let promise = new Promise((resolve, reject) => {
+        //     console.log("Attempting User Retrieval");
+        //     this.props.fetchUser();
+        //     console.log("Finished User Retrieval");
+        //     setTimeout(() => {
+        //     resolve();
+        //     }, 500)
+        // });
+        // promise.then(() => {
+        //     console.log("Attempting Character Retrieval");
+        //     this.props.fetchCharacter(this.props.auth.uid);
+        //     console.log("Finished Character Retrieval");
+        // });
+        // setTimeout(() => {
+        // let tempNum = Math.floor(Math.random() * this.props.character.enlightenment);
+        // this.setState({currentMonster: tempNum});
+        // console.log(tempNum);
+        // }, 500);
+        //this.setState({hasCharacterInfo: true});
+        this.determineMonsters();
+        
     }
 
     render() {

@@ -97,9 +97,9 @@ class HUB extends Component {
     }
 
     calculatePrices() {
-        let currentSpark = this.props.character.spark;
-        let currentLuminosity = this.props.character.luminosity;
-        let currentEnergy = this.props.character.maxEnergy;
+        let currentSpark = this.props.character.spark - this.props.character.equippedItem.spark;
+        let currentLuminosity = this.props.character.luminosity - this.props.character.equippedItem.luminosity;
+        let currentEnergy = this.props.character.maxEnergy - this.props.character.equippedItem.energy;
         let sparkPrice = currentSpark * 20 + 100;
         let luminosityPrice = currentLuminosity * 20 + 100;
         let energyPrice = currentEnergy * 20 + 100;

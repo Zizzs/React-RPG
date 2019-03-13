@@ -36,7 +36,7 @@ class Inventory extends Component {
             this.props.character.equippedItem = item;
             this.props.character.spark += item.spark;
             this.props.character.luminosity += item.luminosity;
-            this.props.character.energy += item.energy;
+            this.props.character.maxEnergy += item.energy;
             this.props.character.hasEquippedItem = true;
             //Saving Character
             let character = this.props.character;
