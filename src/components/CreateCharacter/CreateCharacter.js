@@ -30,6 +30,8 @@ class CreateCharacter extends Component {
             items: false,
             equippedItem: {name: "", spark: 0, energy: 0, luminosity: 0},
             hasEquippedItem: false,
+            bankItems: false,
+            bankSlots: 0,
             
         }
         const { createCharacter, auth } = this.props;

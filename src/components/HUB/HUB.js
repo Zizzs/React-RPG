@@ -61,11 +61,14 @@ class HUB extends Component {
 
     generateItem() {
         let item = createItem(this.props.character.enlightenment);
+        console.log(item);
         let character = this.props.character;
-        if(character.items === false) {
+        if(character.items === undefined || character.items === false) {
             character.items = []
         }
         character.items.push(item);
+        const { saveCharacter, auth, characterId } = this.props;
+        saveCharacter(character, auth.uid, characterId);
         console.log(character);
     }
 
@@ -201,9 +204,9 @@ class HUB extends Component {
                     <div>
                         <button onClick={this.buyEnergy}>Increase Energy - {this.state.energyPrice} Fragments</button>
                     </div>
-                    {/* <div>
+                    <div>
                         <button onClick={this.generateItem}>Generate Item</button>
-                    </div> */}
+                    </div>
                 </div>
                 }
                 {this.props.character.introText > 5 &&

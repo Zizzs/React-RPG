@@ -1,3 +1,5 @@
+import { v4 } from 'uuid';
+
 let createItem = function(enlightenment) {
     let itemNames = [
         "Frozen Rat Leg",
@@ -8,7 +10,7 @@ let createItem = function(enlightenment) {
         "Obsidian Orb",
         "Glittering Shards",
         "Old Pot",
-    ]
+    ];
     let maxRoll = enlightenment * 25;
     let nameRoll = itemNames[Math.floor(Math.random() * itemNames.length)];
     let maxEnergyRoll = enlightenment * 100;
@@ -20,6 +22,7 @@ let createItem = function(enlightenment) {
         spark: sparkRoll,
         luminosity: luminosityRoll,
         energy: energyRoll,
+        id: v4()
     };
     return item;
 }

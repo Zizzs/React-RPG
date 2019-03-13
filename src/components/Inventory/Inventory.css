@@ -31,3 +31,13 @@
     font-size: 25px;
     
 }
+
+#noItems {
+    color: white;
+    text-align: center;
+    font-size: 25px;
+}
+
+#bankSlotButton {
+    text-align: center;
+}

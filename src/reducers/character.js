@@ -25,7 +25,9 @@ export default (state = INITIAL_STATE, action) => {
                   unboundFragments: state[characterKey].unboundFragments,
                   items: state[characterKey].items,
                   equippedItem: state[characterKey].equippedItem,
-                  hasEquippedItem: state[characterKey].hasEquippedItem
+                  hasEquippedItem: state[characterKey].hasEquippedItem,
+                  bankItems: state[characterKey].bankItems,
+                  bankSlots: state[characterKey].bankSlots,
               }
             });
             console.log(newState);
@@ -52,4 +54,6 @@ const INITIAL_STATE = {
     items: false,
     equippedItem: {name: "", spark: 0, energy: 0, luminosity: 0},
     hasEquippedItem: false,
+    bankItems: false,
+    bankSlots: 0,
 }

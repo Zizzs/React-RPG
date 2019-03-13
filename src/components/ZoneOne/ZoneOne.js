@@ -51,7 +51,7 @@ class ZoneOne extends React.Component {
   generateItem(enlightenment) {
     let item = createItem(enlightenment);
     let character = this.props.character;
-    if(character.items === false) {
+    if(character.items === undefined || character.items === false) {
         character.items = []
     }
     character.items.push(item);
