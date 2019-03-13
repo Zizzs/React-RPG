@@ -28,6 +28,7 @@ export default (state = INITIAL_STATE, action) => {
                   hasEquippedItem: state[characterKey].hasEquippedItem,
                   bankItems: state[characterKey].bankItems,
                   bankSlots: state[characterKey].bankSlots,
+                  eventOneCompleted: state[characterKey].eventOneCompleted
               }
             });
             console.log(newState);
@@ -56,4 +57,5 @@ const INITIAL_STATE = {
     hasEquippedItem: false,
     bankItems: false,
     bankSlots: 0,
+    eventOneCompleted: false,
 }

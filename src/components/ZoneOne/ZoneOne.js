@@ -26,6 +26,11 @@ class ZoneOne extends React.Component {
   handleExploration() {
       let randomNumber = Math.floor(Math.random() * 100);
       if(randomNumber <= 20) {
+        let character = this.props.character;
+        character.eventOneCompleted = false;
+        const { saveCharacter, auth, characterId } = this.props;
+        console.log("Saving Character");
+        saveCharacter(character, auth.uid, characterId);
         this.setState({eventRedirect: true});
       } else if(randomNumber > 20 && randomNumber <= 80) {
         this.setState({combatRedirect: true});
