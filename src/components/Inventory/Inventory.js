@@ -129,8 +129,20 @@ class Inventory extends Component {
 
     
     render() {
-        
-        if(this.props.character.items != false && this.props.character.items != undefined && this.props.character.bankItems === false || this.props.character.bankItems === undefined) {
+        let itemExists;
+        let bankExists;
+        if (this.props.character.items === false || this.props.character.items === undefined) {
+            itemExists = false;
+        } else {
+            itemExists = true;
+        }
+        if (this.props.character.bankItems === false || this.props.character.bankItems === undefined) {
+            bankExists = false;
+        } else {
+            bankExists = true;
+        }
+
+        if(itemExists === true && bankExists === false) {
             let characterItems = this.props.character.items;
             const listItems = characterItems.map((item) =>
                 <div key={item.id} className="itemBox">
@@ -174,7 +186,7 @@ class Inventory extends Component {
                     </div>
                 </div>
             );
-        } else if (this.props.character.items != false && this.props.character.items != undefined && this.props.character.bankItems != false && this.props.character.bankItems != undefined) {
+        } else if (itemExists === true && bankExists === true) {
             let characterItems = this.props.character.items;
             const listItems = characterItems.map((item) =>
                 <div key={item.id} className="itemBox">
@@ -228,7 +240,7 @@ class Inventory extends Component {
                     </div>
                 </div>
             );
-        } else if(this.props.character.items === false || this.props.character.items === undefined && this.props.character.bankItems != false && this.props.character.bankItems != undefined) {
+        } else if(itemExists === false && bankExists === true) {
             let bankItems = this.props.character.bankItems;
             const listBankItems = bankItems.map((item) =>
                 <div key={item.id} className="itemBox">
