@@ -68,7 +68,7 @@ class ZoneOneCombat extends Component {
     }
 
     determineMonsters() {
-        let monsterRange = this.state.monsters.length;
+        let monsterRange = this.state.monsters.length - this.props.character.enlightenment;
         let currentTempMonster = Math.floor(Math.random() * monsterRange);
         console.log(currentTempMonster);
         this.setState({currentMonster: currentTempMonster});
@@ -97,19 +97,27 @@ class ZoneOneCombat extends Component {
             //Character Damage
             if (this.props.character.energy > 0) {
                 console.log("Character Attacking");
+
+                //Random Character Damage based off Spark
                 let characterDamage = Math.floor(Math.random() * this.props.character.spark);
                 console.log(characterDamage);
                 console.log(this.props.character.spark);
+
+                //Calculating damage vs enemy defense
                 let enemyDefense = Math.floor(Math.random() * this.state.monsters[this.state.currentMonster].luminosity);
                 let updatedDamage = characterDamage - enemyDefense;
                 if (updatedDamage < 0) {
                     updatedDamage = 0;
                 };
+
+                //Outputting the combat log
                 let charCombatKid = document.createElement("p");
                 let charCombatParent = document.getElementById("eventOutput");
                 charCombatKid.innerHTML = `You attacked for ${characterDamage}, the monster defense was ${enemyDefense}, final damage was ${updatedDamage}!`;
                 charCombatParent.appendChild(charCombatKid);
                 console.log(`You attacked for ${characterDamage}, the monster defense was ${enemyDefense}, final damage was ${updatedDamage}!`);
+
+                //Updating Enemy Health
                 let updatedEnemyHealth = this.state.monsters[this.state.currentMonster].energy - updatedDamage;
                 monster.energy = updatedEnemyHealth;
             }
@@ -122,20 +130,28 @@ class ZoneOneCombat extends Component {
             // Monster Attack
             if (this.state.monsters[this.state.currentMonster].energy > 0) {
                 console.log("Monster Attacking");
+
+                //Monster Damage and Character Defense Calculations
                 let monsterDamage = Math.floor(Math.random() * this.state.monsters[this.state.currentMonster].spark);
                 let characterDefense = Math.floor(Math.random() * this.props.character.luminosity);
                 let updatedDamage = monsterDamage - characterDefense;
                 if (updatedDamage < 0) {
                     updatedDamage = 0;
                 };
+
+                //Outputting Text
                 theKid.innerHTML = `The ${this.state.monsters[this.state.currentMonster].name} attacked for ${monsterDamage}, your defense was ${characterDefense}, final damage was ${updatedDamage}!`;
                 theParent.appendChild(theKid);
                 console.log(`The ${this.state.monsters[this.state.currentMonster].name} attacked for ${monsterDamage}, your defense was ${characterDefense}, final damage was ${updatedDamage}!`);
                 if (updatedDamage > this.props.character.energy) {
                     this.props.character.energy = 0;
                 }
+                
+                //Updating Character Health(Energy);
                 this.props.character.energy -= updatedDamage;
                 console.log(`Character Energy Left: ${this.props.character.energy}`);
+
+                //Saving Character
                 let character = this.props.character;
                 const { saveCharacter, auth, characterId } = this.props;
                 console.log("Saving Combat");
@@ -160,6 +176,8 @@ class ZoneOneCombat extends Component {
                 let itemKidRegular = document.createElement("p");
                 let itemKidEpic = document.createElement("p");
                 let itemParent = document.getElementById("eventOutput");
+
+                //Item generation
                 if(randomNumber >= 66) {
                     let item = createItem(this.state.monsters[this.state.currentMonster].tier);
                     itemKidRegular.innerHTML = `You have recieved a regular quality ${item.name}`;
@@ -188,11 +206,15 @@ class ZoneOneCombat extends Component {
                 console.log("Saving Combat");
                 saveCharacter(character, auth.uid, characterId);
             }
+
+            //If Character Dies
             if (this.props.character.energy <= 0) {
                 let deathKid = document.createElement("p");
                 let deathParent = document.getElementById("eventOutput");
                 deathKid.innerHTML = `You have died and lost all your unbound fragments.`
                 deathParent.appendChild(deathKid);
+
+                //Set energy and unbound fragments to zero
                 this.props.character.energy = 0;
                 this.props.character.unboundFragments = 0;
 
@@ -207,28 +229,7 @@ class ZoneOneCombat extends Component {
     }
 
     componentWillMount() {
-        // if (this.state.hasCharacterInfo === false) {
-        // let promise = new Promise((resolve, reject) => {
-        //     console.log("Attempting User Retrieval");
-        //     this.props.fetchUser();
-        //     console.log("Finished User Retrieval");
-        //     setTimeout(() => {
-        //     resolve();
-        //     }, 500)
-        // });
-        // promise.then(() => {
-        //     console.log("Attempting Character Retrieval");
-        //     this.props.fetchCharacter(this.props.auth.uid);
-        //     console.log("Finished Character Retrieval");
-        // });
-        // setTimeout(() => {
-        // let tempNum = Math.floor(Math.random() * this.props.character.enlightenment);
-        // this.setState({currentMonster: tempNum});
-        // console.log(tempNum);
-        // }, 500);
-        //this.setState({hasCharacterInfo: true});
-        this.determineMonsters();
-        
+        this.determineMonsters(); 
     }
 
     render() {

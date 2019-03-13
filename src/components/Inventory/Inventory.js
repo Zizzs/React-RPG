@@ -113,24 +113,26 @@ class Inventory extends Component {
     }
 
     fragmentItem(item) {
-        //Get Index of Item in Array
-        let index = this.props.character.items.indexOf(item);
-        //Total Fragment Amount of item based off stats
-        let totalFragments = item.spark + item.luminosity + item.energy;
-        //Add fragments to character's bound fragments
-        this.props.character.boundFragments += totalFragments;
-        //Remove item
-        if (index > -1) {
-            this.props.character.items.splice(index, 1);
+        if(item.id != this.props.character.equippedItem.id) {
+            //Get Index of Item in Array
+            let index = this.props.character.items.indexOf(item);
+            //Total Fragment Amount of item based off stats
+            let totalFragments = item.spark + item.luminosity + item.energy;
+            //Add fragments to character's bound fragments
+            this.props.character.boundFragments += totalFragments;
+            //Remove item
+            if (index > -1) {
+                this.props.character.items.splice(index, 1);
+            }
+            if (this.props.character.equippedItem.id === item.id) {
+                this.unequipItem();
+            }
+            //Saving Character
+            let character = this.props.character;
+            const { saveCharacter, auth, characterId } = this.props;
+            console.log("Saving Character");
+            saveCharacter(character, auth.uid, characterId);
         }
-        if (this.props.character.equippedItem.id === item.id) {
-            this.unequipItem();
-        }
-        //Saving Character
-        let character = this.props.character;
-        const { saveCharacter, auth, characterId } = this.props;
-        console.log("Saving Character");
-        saveCharacter(character, auth.uid, characterId);
     }
 
     
