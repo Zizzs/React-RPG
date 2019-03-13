@@ -107,16 +107,11 @@ class HUB extends Component {
         this.setState({sparkPrice: sparkPrice, luminosityPrice: luminosityPrice, energyPrice: energyPrice});
     }
 
-    handleText(event) {
-        const {dispatch} = this.props;
-        event.preventDefault();
-        //let characterKey = Object.keys(this.props.character);
-        //let tempState = this.props.character[characterKey];
-        const action = {
-            type: 'PROGRESS_INTRO',
-            state: this.props.character
-        }
-        dispatch(action);
+    handleText() {
+        let character = this.props.character;
+        character.introText += 1;
+        const { saveCharacter, auth, characterId } = this.props;
+        saveCharacter(character, auth.uid, characterId);
     }
 
     componentDidMount() {
@@ -221,9 +216,7 @@ class HUB extends Component {
                 }
                 {this.props.character.introText <=5 && 
                 <div>
-                    <form onSubmit={this.handleText}>
-                        <button>Next</button>
-                    </form>
+                    <button onClick={() => this.handleText()}>Next</button>
                 </div>}
             </div>
         </div>
