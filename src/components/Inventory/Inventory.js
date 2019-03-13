@@ -19,7 +19,10 @@ class Inventory extends Component {
         if (this.props.character.hasEquippedItem != false) {
             this.props.character.spark -= this.props.character.equippedItem.spark;
             this.props.character.luminosity -= this.props.character.equippedItem.luminosity;
-            this.props.character.energy -= this.props.character.equippedItem.energy;
+            this.props.character.maxEnergy -= this.props.character.equippedItem.energy;
+            if(this.props.character.energy > this.props.character.maxEnergy) {
+                this.props.character.energy = this.props.character.maxEnergy;
+            }
             this.props.character.hasEquippedItem = false;
             this.props.character.equippedItem = {name: "No item", spark: 0, luminosity: 0, energy: 0};
 
@@ -37,6 +40,9 @@ class Inventory extends Component {
             this.props.character.spark += item.spark;
             this.props.character.luminosity += item.luminosity;
             this.props.character.maxEnergy += item.energy;
+            if (this.props.character.energy < this.props.character.maxEnergy) {
+                this.props.character.energy = this.props.character.maxEnergy;
+            }
             this.props.character.hasEquippedItem = true;
             //Saving Character
             let character = this.props.character;
