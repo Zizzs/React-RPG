@@ -1,9 +1,10 @@
 #rpgHeader {
     text-align: center;
-    font-size: 30px;
+    font-size: 100px;
     color: white;
   }
   
   #changeLog {
     color: white;
+    text-align: center;
   }
