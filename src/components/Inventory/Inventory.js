@@ -163,7 +163,7 @@ class Inventory extends Component {
                     <button onClick={() => this.bankItem(item)}>Bank Item</button>
                 </div>
             );
-            let bankCosts = [500, 5000, 25000, 50000, 100000];
+            let bankCosts = [500, 5000, 25000, 50000, 100000, 250000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000];
             let nextCost = bankCosts[this.props.character.bankSlots];
             return (
                 <div>
@@ -217,7 +217,7 @@ class Inventory extends Component {
                     <button onClick={() => this.unbankItem(item)}>Remove From Bank</button>
                 </div>
             );
-            let bankCosts = [500, 5000, 25000, 50000, 100000];
+            let bankCosts = [500, 5000, 25000, 50000, 100000, 250000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000];
             let nextCost = bankCosts[this.props.character.bankSlots];
             return (
                 <div>
@@ -259,7 +259,7 @@ class Inventory extends Component {
                     <button onClick={() => this.unbankItem(item)}>Remove From Bank</button>
                 </div>
             );
-            let bankCosts = [500, 5000, 25000, 50000, 100000];
+            let bankCosts = [500, 5000, 25000, 50000, 100000, 250000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000];
             let nextCost = bankCosts[this.props.character.bankSlots];
             return (
                 <div>
@@ -291,7 +291,7 @@ class Inventory extends Component {
                 </div>
             );
         } else {
-            let bankCosts = [500, 5000, 25000, 50000, 100000];
+            let bankCosts = [500, 5000, 25000, 50000, 100000, 250000, 500000, 1000000, 5000000, 10000000, 50000000, 100000000];
             let nextCost = bankCosts[this.props.character.bankSlots];
             return (
                 <div>
