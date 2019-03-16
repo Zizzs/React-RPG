@@ -13,6 +13,7 @@ class HUB extends Component {
             sparkPrice: 100,
             luminosityPrice: 100,
             energyPrice: 100,
+            enlightenmentPrice: 50000,
         }
         this.handleText = this.handleText.bind(this);
         this.bindFragments = this.bindFragments.bind(this);
@@ -96,15 +97,25 @@ class HUB extends Component {
         this.calculatePrices();
     }
 
+    buyEnlightenment() {
+        this.calculatePrices();
+        if(this.props.character.boundFragments >= this.state.enlightenmentPrice) {
+            this.props.character.boundFragments -= this.state.enlightenmentPrice;
+            this.props.character.enlightenment += 1;
+        }
+    }
+
     calculatePrices() {
         let currentSpark = this.props.character.spark - this.props.character.equippedItem.spark;
         let currentLuminosity = this.props.character.luminosity - this.props.character.equippedItem.luminosity;
         let currentEnergy = this.props.character.maxEnergy - this.props.character.equippedItem.energy;
+        let currentEnlightenment = this.props.character.enlightenment;
+        let enlightenmentPrice = currentEnlightenment * 50000;
         let sparkPrice = currentSpark * 20 + 100;
         let luminosityPrice = currentLuminosity * 20 + 100;
         let energyPrice = currentEnergy * 20 + 100;
         console.log(sparkPrice, luminosityPrice, energyPrice);
-        this.setState({sparkPrice: sparkPrice, luminosityPrice: luminosityPrice, energyPrice: energyPrice});
+        this.setState({sparkPrice: sparkPrice, luminosityPrice: luminosityPrice, energyPrice: energyPrice, enlightenmentPrice: enlightenmentPrice});
     }
 
     handleText() {
@@ -199,9 +210,9 @@ class HUB extends Component {
                     <div>
                         <button onClick={this.buyEnergy}>Increase Energy - {this.state.energyPrice} Fragments</button>
                     </div>
-                    <div>
+                    {/* <div>
                         <button onClick={this.generateItem}>Generate Item</button>
-                    </div>
+                    </div> */}
                 </div>
                 }
                 {this.props.character.introText > 5 &&

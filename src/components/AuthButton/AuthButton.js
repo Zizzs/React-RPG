@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { signIn, signOut } from '../../actions/actionCreator';
 import { connect } from 'react-redux';
 import { NavLink } from "react-router-dom" 
+import Help from '../Help/Help';
 import Clock from '../Clock/Clock';
 import * as actions from '../../actions/actionCreator';
 import './AuthButton.css';
@@ -101,6 +102,9 @@ class AuthButton extends Component {
             </div>
             <div>
                 <p>{this.props.auth && this.props.auth.email}</p>
+            </div>
+            <div>
+               <NavLink className="mainLinks" to="/help">Help</NavLink>
             </div>
             <div>
                 <Clock updateCount={this.updateCount}/>
