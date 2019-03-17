@@ -17,19 +17,17 @@ import './Wrapper.css';
 class Wrapper extends Component {
 
   componentWillMount() {
-    let promise = new Promise((resolve, reject) => {
+    new Promise((resolve, reject) => {
       console.log("Attempting User Retrieval");
       this.props.fetchUser();
       console.log("Finished User Retrieval");
-      setTimeout(() => {
-        resolve();
-      }, 500)
-    });
-    promise.then(() => {
+      setTimeout(() => resolve(this.props.auth.uid), 500);
+    }).then((result) => {
       console.log("Attempting Character Retrieval");
-      this.props.fetchCharacter(this.props.auth.uid);
+      this.props.fetchCharacter(result);
       console.log("Finished Character Retrieval");
     });
+
   }
 
   render() {
