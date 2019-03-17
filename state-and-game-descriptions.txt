@@ -54,3 +54,32 @@ New loot tiers that will drop, possible 1-maxRoll, or maybe split into tiers. No
 Allow items to be fragmented into bound fragments (based off roll values?)
 Limit inventory to 10, add buffer item slot. Buffer item and all items after will be destroyed upon next loot. Keep fragmenting items to clear up inventory.
 Add Bank window, and allow items to be banked. Bank slots must be purchased for bound fragments. 500/5000/15000/50000/100000
+
+
+
+
+
+Item and Market Ideas(March 15th)
+
+Add proper tiers to items, and user's ID who dropped it. Possibly drop items as a currency that you then use at a market to unbox? That might make items more special. 
+
+Example Situation: User gets item currency drop from a monster. Really wants to see the item! Heads to the new Portal where the market exists and uses the vendor to unbox the item and add it to their inventory. Possibly pay fragments to influence item ranges?
+
+Example Item
+
+Item {
+    name: "Dog Bone",
+    energy: 15,
+    spark: 30,
+    luminosity: 25,
+    tier: 2,
+    character/user ID: 1239090asd907asd872
+}
+
+Spawn items with tiers, so that I can add items that can reroll the item. Not sure if I want to split each stat into tier values, or just do a range of 0 - whatever.
+
+Item Reroll Currency!!!
+
+Market Information:
+
+If we have the user's ID who looted the item, then we can tie that into the market and will be able to track who is selling what. Have a user post to the market (an array of items?), and then save it to firebase. Then when someone buys the item, have the market check the user/character ID on the item and send the respective moneys to the right person.
