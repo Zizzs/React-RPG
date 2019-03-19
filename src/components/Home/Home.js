@@ -5,7 +5,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <p id="rpgHeader">[ Void ]</p>
+        <p id="rpgHeader">VOID</p>
         <div id="changeLog">
           Create a Character, Then Enter the HUB to explore the void...
         </div>
